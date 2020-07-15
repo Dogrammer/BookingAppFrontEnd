@@ -10,21 +10,25 @@ import { HomeComponent } from './home/home.component';
 import { SiteNavbarComponent } from './layout/site-layout/site-navbar/site-navbar.component';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
     SiteLayoutComponent,
     AdminLayoutComponent,
-    HomeComponent,
-    SiteNavbarComponent
+    // HomeComponent,
+    SiteNavbarComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgImageSliderModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

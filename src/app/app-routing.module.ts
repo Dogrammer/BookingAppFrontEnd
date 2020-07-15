@@ -4,25 +4,21 @@ import { SiteLayoutComponent } from './layout/site-layout/site-layout.component'
 import { HomeComponent } from './home/home.component';
 
 
-const routes: Routes = [{ 
-  path: 'site', 
-  component: SiteLayoutComponent,
-  children: [
-    { path: 'home', component: HomeComponent },
-  ]
-},
-
-// App routes goes here here
-// { 
-//   path: 'dashboard',
-//   component: AdminLayoutComponent, 
+// const routes: Routes = [{ 
+//   path: 'site', 
+//   component: SiteLayoutComponent,
 //   children: [
-//     { path: 'dashboard', component: AboutUsComponent },
-    
+//     { path: 'home', component: HomeComponent },
 //   ]
 // },
-];
+// ];
 
+const routes: Routes = [
+  {
+    path: 'site', component: SiteLayoutComponent,
+    loadChildren: () => import('./apartment/apartment.module').then(m => m.ApartmentModule)
+  }
+];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

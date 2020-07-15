@@ -36,20 +36,73 @@
 
 
 <!-- iznad je image slider za iskoristiti -->
-<div class="navbar">
+<!-- <div class="navbar">
   <a href="#" class="logo">Booknex</a>
   <ul class="navx">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li>
+      <a href="#home">Home</a>
+      <div class="underline"></div>
+    </li>
+    <li>
+      <a href="#about">About</a>
+      <div class="underline"></div>
+    </li>
+    <li>
+      <a href="#portfolio">Portfolio</a>
+      <div class="underline"></div>
+    </li>
+    <li>
+      <a href="#services">Services</a>
+      <div class="underline"></div>
+    </li>
+    <li>
+      <a href="#contact">Contact</a>
+      <div class="underline"></div>
+    </li>
   </ul>
-</div>
+</div> -->
 <div class="banner-area" id="home">
   <div class="reserve">
+    <form>
+      <div class="row">
+        <div class="col-4">
+          <label class="text-white" for="dateFromInput">Date from</label>
+          <input type="date" class="form-control" id="dateFromInput" placeholder="Date from">
+        </div>
+        <div class="col-4">
+          <label class="text-white" for="dateToInput">Date to</label>
+          <input type="date" class="form-control" id="dateToInput" placeholder="Date to">
+        </div>
+        <div class="col-4">
+          <label class="text-white" for="people">People</label>
+          <input type="number" class="form-control" id="people" placeholder="People">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 mt-3">
+          <label class="text-white" for="city">City</label>
+          <input type="text" class="form-control" id="country" placeholder="City">
+        </div>
+        <div class="col-4 mt-3">
+          <label class="text-white" for="priceFrom">Price per night from</label>
+          <input type="number" class="form-control" id="priceFrom" placeholder="Price from">
+        </div>
+        <div class="col-4 mt-3">
+          <label class="text-white" for="priceTo">Price per night to</label>
+          <input type="number" class="form-control" id="priceTo" placeholder="Price to">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col mt-3 text-center">
+        <button type="button" class="btn btn-outline-info">Search apartments</button>
+
+        </div>
+      </div>
+    </form>
   </div>  
 </div>
+
+
 
   
   <!-- <div class="about-area" id="about">
