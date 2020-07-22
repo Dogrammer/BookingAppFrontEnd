@@ -5,7 +5,7 @@ body {
 }
 
 .navbar {
-    position: fixed;
+    // position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,8 +101,8 @@ a:hover {
 	width: 100%;
 }
 
-.navbar ul li:hover a {
-}
+// .navbar ul li:hover a {
+// }
 
 .navbar ul li:active a {
 	transition: none;

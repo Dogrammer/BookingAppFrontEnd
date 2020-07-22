@@ -1,1 +1,17 @@
-<p>apartment works!</p>
+<div class="container">
+    <div *ngFor="let a of apartments" class="card mt-3">
+        <div class="card-header">
+          <a type="button" (click)="navigateToDetails(a.id)">{{a.name}}</a>
+
+        </div>
+        <div class="card-body">
+          <div *ngIf="a.image; then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock><img src="../../../assets/apartmentgroup/img1.jpg" alt=""></ng-template>
+          <ng-template #elseBlock><img src="../../../assets/apartmentgroup/no-image.png" alt=""></ng-template>
+          <p class="card-text">{{a.description}}.</p>
+        </div>
+      </div>
+
+      
+</div>
+

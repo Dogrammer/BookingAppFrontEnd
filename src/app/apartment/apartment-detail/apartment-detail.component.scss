@@ -1,0 +1,30 @@
+.heading {
+    font-size: 2rem;
+    margin-top: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-bottom: 0.1em solid gray;
+}
+
+.title {
+    font-size: 2rem;
+    width: 20%;
+}
+
+.price {
+    width: 20%;
+}
+
+.photo {
+    margin-top: 2%;
+    height: 250px;
+    border: 0.1em solid gray;
+}
+
+.calendar {
+    margin-top: 1%;
+    height: 200px;
+    border: 1px solid gray;
+
+}

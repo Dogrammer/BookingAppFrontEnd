@@ -1,1 +1,43 @@
-<p>apartment-detail works!</p>
+<div class="container">
+    <div class="heading">
+        <h3 class="title">{{apartment.name}}</h3>
+        <p class="price">$150.50</p>
+    </div>
+    <div class="photo">
+        <h3>photo part</h3>
+    </div>
+    <div class="details mt-3">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Capacity
+              <span class="badge badge-primary badge-pill">{{apartment.capacity}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Size
+              <span class="badge badge-primary badge-pill">{{apartment.size}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Other details
+              <span class="badge badge-primary badge-pill">1</span>
+            </li>
+          </ul>
+    </div>
+    <div class="calendar">
+        <h3>calendar part</h3>
+    </div>
+
+    <form [formGroup]="reservationFormGroup">
+      <div class="form-group">
+        <label for="formGroupExampleInput">Example label</label>
+        <input type="datetime-local" class="form-control" id="formGroupExampleInput" formControlName="dateFrom" placeholder="Example input">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Another label</label>
+        <input type="datetime-local" class="form-control" id="formGroupExampleInput2" formControlName="dateTo" placeholder="Another input">
+      </div>
+    <button class="btn btn-primary mt-3" (click)="sendReservation()">Send reservation request</button>
+
+    </form>
+
+      
+</div>
