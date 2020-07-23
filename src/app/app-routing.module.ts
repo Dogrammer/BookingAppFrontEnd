@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import { AuthGuardService } from './auth/services/auth-guard.service';
 
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'admin', component: AdminLayoutComponent,
+    path: 'admin', component: AdminLayoutComponent, canActivate: [AuthGuardService], data: {roles: ['Admin', 'ApartmentManager']},
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   }
  

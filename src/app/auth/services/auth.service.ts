@@ -66,13 +66,24 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
-  // sendReservation(reservationData) {
-  //   return this.http.post(environment.apiUrl + this.CONTROLER_NAME_RESERVATION + '/reservations/', reservationData).pipe(
-  //     map( data => {
-  //       return data
-  //     })
-  //   );
-  // }
+  roleMatch(allowedRoles): boolean {
+    let isMatch = false;
+    var token = localStorage.getItem('token');
+    this.decodedToken = this.jwtHelper.decodeToken(token);
+    if (!this.decodedToken){
+      return;
+    }
+    console.log('prosao poslije ifa - nije dobro');
+    
+    const userRoles = this.decodedToken.role as Array<string>;
+    allowedRoles.forEach(element => {
+      if (userRoles.includes(element)) {
+        isMatch = true;
+        return;
+      }
+    });
+    return isMatch;
+  }
 
 
 }

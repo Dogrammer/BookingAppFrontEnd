@@ -8,7 +8,7 @@ import {
 
 const routes: Routes = [
   {
-    path: 'home', component: AdminHomeComponent, canActivate: [AuthGuard]
+    path: 'home', component: AdminHomeComponent
   },
   { path: '',   redirectTo: 'home', pathMatch: 'full'
   },
