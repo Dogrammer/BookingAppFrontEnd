@@ -5,6 +5,13 @@
     </div>
     <div class="photo">
         <h3>photo part</h3>
+
+        <div *ngFor="let image of images" style="display: inline; padding: 5px;">
+          <!-- <p>Taken from wikpedia</p> -->
+          <img style="width: 100px; height: 100px;" [src]="createImgPath(image)">
+          <!-- <img style="width: 100px; height: 100px;" src="Images/img1.jpg" alt=""> -->
+        </div>
+
     </div>
     <div class="details mt-3">
         <ul class="list-group">

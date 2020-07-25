@@ -18,6 +18,7 @@ export class ApartmentDetailComponent implements OnInit {
   id: number;
   public model: NgbDateStruct;
   apartment: IApartment;
+  images: Array<string> = [];
 
   reservationFormGroup: FormGroup = this.formBuilder.group({
     dateFrom: [null,Validators.required],
@@ -40,9 +41,13 @@ export class ApartmentDetailComponent implements OnInit {
     });
   }
 
+  public createImgPath = (serverPath: string) => {
+    return `https://localhost:5001/${serverPath}`;
+  }
+
   getApartment(id) {
     this.apartmentDetailService.getApartment(id).subscribe(
-      data => { this.apartment = data; console.log(this.apartment)}
+      data => { this.apartment = data; this.images = data.images; console.log(this.apartment)}
     )
   }
 

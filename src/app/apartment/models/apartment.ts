@@ -4,5 +4,6 @@ export interface IApartment {
     description: string;
     size: number;
     capacity: number;
+    images: Array<string>;
 
 }
