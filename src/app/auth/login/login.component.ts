@@ -28,8 +28,16 @@ export class LoginComponent implements OnInit {
       // this.alertify.success('Logged in successfully');
     }, error => {
       // this.alertify.error('Failed to login');
+      console.log(error);
+      
     }, () => {
-      this.router.navigate(['/site/home']);
+      let listOfRoles: Array<string> = ['Admin', 'ApartmentManager'];
+      if ( this.authService.roleMatch(listOfRoles)) {
+        this.router.navigate(['admin']);
+      } else {
+        this.router.navigate(['/site/home']);
+      }
+      
     });
   }
 

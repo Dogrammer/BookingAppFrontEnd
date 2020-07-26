@@ -23,7 +23,7 @@ export class UploadComponent implements OnInit {
 
   ngOnInit() {
     this.myForm.patchValue({
-      apartmentId: 2
+      apartmentId: 1
     })
   }
       

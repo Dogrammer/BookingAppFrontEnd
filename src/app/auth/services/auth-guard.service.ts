@@ -21,14 +21,16 @@ export class AuthGuardService implements CanActivate {
     
     if (roles) {
       const match = this.authService.roleMatch(roles);
-      if (match) {
+      if(match) {
         return true;
+
       } else {
         this.router.navigate(['site/home']);
         window.alert("You are not authorized to access this area");
         
         // this.alertify.error('You are not authorized to access this area');
       }
+      
     }
     if (this.authService.isAuthenticated()) {
       return true;
