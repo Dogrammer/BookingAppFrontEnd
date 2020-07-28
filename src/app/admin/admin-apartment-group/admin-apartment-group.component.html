@@ -1,4 +1,5 @@
 <div class="container">
+  <button class="btn btn-primary mt-3" (click)="openAddApartmentGroupModal()">Add new</button>
     <div *ngFor="let group of apartmentGroups" class="card mt-3">
         <div class="card-header">
           <a type="button" (click)="navigateToDetails(group.id)">{{group.name}}</a>

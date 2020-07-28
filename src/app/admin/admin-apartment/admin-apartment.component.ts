@@ -31,7 +31,7 @@ export class AdminApartmentComponent implements OnInit {
   }
 
   navigateToDetails(id) {
-    this.router.navigate(['/site/apartment/', id]);
+    this.router.navigate(['/admin/apartment/', id]);
   }
 
 

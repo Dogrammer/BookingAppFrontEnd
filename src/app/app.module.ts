@@ -12,6 +12,9 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatInputModule } from '@angular/material/input';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthGuardService } from './auth/services/auth-guard.service';
@@ -46,7 +49,10 @@ export function jwtOptionsFactory() {
     NgImageSliderModule,
     NgbModule,
     BrowserAnimationsModule,
+    MatButtonModule,
     MatFormFieldModule,
+    MatInputModule ,
+    MatDialogModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,

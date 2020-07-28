@@ -9,15 +9,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminApartmentGroupComponent } from './admin-apartment-group/admin-apartment-group.component';
 import { AdminApartmentComponent } from './admin-apartment/admin-apartment.component';
 import { AdminApartmentDetailComponent } from './admin-apartment-detail/admin-apartment-detail.component';
+import { ModalAddOrEditApartmentGroupComponent } from './admin-apartment-group/modal-add-or-edit-apartment-group/modal-add-or-edit-apartment-group.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
-  declarations: [AdminHomeComponent, UploadComponent, ImageUploadComponent, AdminApartmentGroupComponent, AdminApartmentComponent, AdminApartmentDetailComponent],
+  declarations: [AdminHomeComponent, UploadComponent, ImageUploadComponent, AdminApartmentGroupComponent, AdminApartmentComponent, AdminApartmentDetailComponent, ModalAddOrEditApartmentGroupComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatDialogModule
   ]
 })
 export class AdminModule { }
