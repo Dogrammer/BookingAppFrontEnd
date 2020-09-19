@@ -25,19 +25,17 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.login(this.loginFormGroup.value).subscribe(next => {
-      // this.alertify.success('Logged in successfully');
-    }, error => {
-      // this.alertify.error('Failed to login');
-      console.log(error);
+      console.log('logged in');
       
+    }, error => {
+      console.log(error);
     }, () => {
-      let listOfRoles: Array<string> = ['Admin', 'ApartmentManager'];
+    let listOfRoles: Array<string> = ['Admin', 'ApartmentManager'];
       if ( this.authService.roleMatch(listOfRoles)) {
         this.router.navigate(['admin']);
       } else {
         this.router.navigate(['/site/home']);
       }
-      
     });
   }
 

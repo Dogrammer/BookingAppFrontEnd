@@ -1,15 +1,84 @@
-<h1 mat-dialog-title>Add Apartment group </h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field class="example-full-width">
-    <mat-label>Favorite food</mat-label>
-    <input matInput placeholder="Ex. Pizza" value="Sushi">
-  </mat-form-field>
-
-  
+<div class="modal-header">
+  <h4 class="modal-title text-primary" id="modal-title"><strong>{{ title }}</strong></h4>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
-  <button mat-raised-button>Basic</button>
+<div class="modal-body">
+  <form [formGroup]="apartmentGroupGroup" #myForm="ngForm">
+    <div class="card-body" *ngIf="action == 'add' || action == 'edit'">
+      <div class="col-sm-12 col-md-12 col-lg-12  mb-3">
+        <label for="name" class="required">Naziv grupe</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Ime"
+          formControlName="name"
+          [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched || myForm.submitted)}"
+          autocomplete="off">
+        <div class="invalid-feedback">Polje je obavezno</div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-12  mb-3">
+        <label for="description" class="required">Opis grupe</label>
+        <input type="text" class="form-control" id="description" name="description" placeholder="Opis"
+          formControlName="description"
+          [ngClass]="{'is-invalid': description.invalid && (description.dirty || description.touched || myForm.submitted)}"
+          autocomplete="off">
+        <div class="invalid-feedback">Polje je obavezno</div>
+      </div>
+<!-- ispod ide provjera ako je super admin -->
+      <div *ngIf="isAdmin == true && action == 'add'" class="col-sm-12 col-md-12 col-lg-12  mb-3">
+        <label id="users" for="users" class="required">Apartment managers</label>
+        <ng-select [items]="users" bindLabel="userName" bindValue="id" labelForId="state" placeholder="Izaberi..."
+          clearAllText="Clear" formControlName="userId"
+          [ngClass]="{'is-invalid': userId.invalid && (userId.dirty || userId.touched)}">
+        </ng-select>
+        <div class="invalid-feedback">Polje je obavezno</div>
+      </div>
+
+      <!-- <div class="col-sm-12 col-md-12 col-lg-12  mb-3">
+        <label id="documentCategoryId" for="documentCategoryId" class="required">Kategorija dokumenta</label>
+        <ng-select [items]="documentCategories"  bindLabel="name" bindValue="id" labelForId="state" placeholder="Izaberi..."
+          clearAllText="Clear" formControlName="documentCategoryId">
+        </ng-select>
+        <div class="invalid-feedback">Polje je obavezno</div>
+      </div> -->
+      <!-- <div class="col-sm-12 col-md-12 col-lg-12  mb-3">
+        <label id="pedagogicalYearId" for="pedagogicalYearId" class="required">Pedagoška godina</label>
+        <ng-select [items]="pedagogicalYears"  bindLabel="name" bindValue="id" labelForId="state" placeholder="Izaberi..."
+          clearAllText="Clear" formControlName="pedagogicalYearId" (clear)="removeValues('pedagogicalYearId')">
+        </ng-select>
+        <div class="invalid-feedback">Polje je obavezno</div>
+      </div> -->
+      <!-- <div class="col-sm-12 col-md-12 col-lg-12  mb-3" *ngIf="pedagogicalYearId.value">
+        <label id="requestTypePerAgeId" for="requestTypePerAgeId" class="required">Program po dobi</label>
+        <ng-select (change)="forConsents(pedagogicalYearId.value, requestTypePerAgeId.value)" [items]="programsPerAge"  bindLabel="name" bindValue="id" labelForId="state" placeholder="Izaberi..."
+          clearAllText="Clear" formControlName="requestTypePerAgeId" (clear)="removeValues('requestTypePerAgeId')">
+        </ng-select>
+        <div class="invalid-feedback">Polje je obavezno</div>
+      </div> -->
+      <!-- <div class="col-sm-12 col-md-12 col-lg-12  mb-3" *ngIf="requestTypePerAgeId.value && documentCategoryId.value == 1">
+        <label id="consentId" for="consentId">Privole</label>
+        <ng-select [items]="consents"  bindLabel="name" bindValue="id" labelForId="state" placeholder="Izaberi..."
+          clearAllText="Clear" formControlName="consentId">
+        </ng-select>
+        <div class="invalid-feedback">Polje je obavezno</div>
+      </div> -->
+    </div>
+    <div *ngIf="action === 'delete'">
+      <div class="card-body">
+          <p>
+            <strong>Jeste li sigurni da želite izbrisati odabrani apartman?</strong>
+            <span class="text-danger"> Ova je akcija trajna</span>
+          </p>
+      </div>
+    </div>
+    <div class="modal-footer" style="justify-content: space-between;">
+      <button type="button" class="btn btn-outline-secondary btn-rounded" (click)="modal.close()">Odustani</button>
+      <!-- Edit button -->
+       <!-- [disabled]="!otherChildGroup.valid"  -->
+      <!-- <button *ngIf="action === 'edit'" [disabled]="!myForm.valid" type="button" ngbAutofocus
+        class="btn btn-primary btn-rounded" (click)="editApartmentGroup()">Spremi</button> -->
+      <!-- Create button -->
+      <!--  -->
+      <button [disabled]="!apartmentGroupGroup.valid" *ngIf="action === 'add'" type="button" ngbAutofocus
+        class="btn btn-primary btn-rounded" (click)="saveApartmentGroup()">Spremi</button>
+      <!-- Delete button -->
+      <!-- <button *ngIf="action === 'delete'" type="button" ngbAutofocus (click)="deleteApartmentGroup()" class="btn btn-danger btn-rounded" >Potvrdi</button> -->
+    </div>
+  </form>
 </div>

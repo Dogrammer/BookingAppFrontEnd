@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { IUser } from '../models/user';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -83,6 +84,22 @@ export class AuthService {
       }
     });
     return isMatch;
+  }
+
+  getApartmentManagers(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(environment.apiUrl + this.CONTROLER_NAME + '/getAllUsersWithApartmentManagerRole').pipe(
+      map( data => {
+        return data
+      })
+    );
+  }
+
+  checkIfAdmin() {
+    return this.http.get(environment.apiUrl + this.CONTROLER_NAME + '/checkIfAdmin').pipe(
+      map( data => {
+        return data
+      })
+    );
   }
 
 

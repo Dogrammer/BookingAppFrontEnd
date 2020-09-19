@@ -14,6 +14,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -23,9 +26,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgSelectModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxDatatableModule,
+    NgbModule
+
   ]
 })
 export class AdminModule { }

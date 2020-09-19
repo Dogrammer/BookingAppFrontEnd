@@ -29,4 +29,14 @@ export class AdminApartmentGroupService {
       })
     );
   }
+
+  deleteApartmentGroup(id) {
+    console.log(id);
+    
+    return this.http.delete(environment.apiUrl + this.CONTROLER_NAME + '/deleteApartmentGroups/' + id).pipe(
+      map( data => {
+        return data
+      })
+    );
+  }
 }

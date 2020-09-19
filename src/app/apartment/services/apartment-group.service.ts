@@ -22,27 +22,27 @@ export class ApartmentGroupService {
     );
   }
 
-  // saveCountry(countryData) {
-  //   return this.http.post(environment.apiUrl + this.CONTROLER_NAME + '/countries', countryData).pipe(
-  //     map( data => {
-  //       return data
-  //     })
-  //   );
-  // }
+  saveApartmentGroup(apartmentGroupData) {
+    return this.http.post(environment.apiUrl + this.CONTROLER_NAME + '/apartmentGroups', apartmentGroupData).pipe(
+      map( data => {
+        return data
+      })
+    );
+  }
 
-  // editCountry(id, countryData) {
-  //   return this.http.put(environment.apiUrl + this.CONTROLER_NAME + '/' + id, countryData).pipe(
-  //     map( data => {
-  //       return data
-  //     })
-  //   );
-  // }
+  editApartmentGroup(id, apartmentGroupData) {
+    return this.http.put(environment.apiUrl + this.CONTROLER_NAME + '/editApartmentGroup' + id, apartmentGroupData).pipe(
+      map( data => {
+        return data
+      })
+    );
+  }
 
-  // deleteCountry(id) {
-  //   return this.http.delete(environment.apiUrl + this.CONTROLER_NAME + '/' + id).pipe(
-  //     map( data => {
-  //       return data
-  //     })
-  //   );
-  // }
+  deleteApartmentGroup(id) {
+    return this.http.delete(environment.apiUrl + this.CONTROLER_NAME + '/' + id).pipe(
+      map( data => {
+        return data
+      })
+    );
+  }
 }

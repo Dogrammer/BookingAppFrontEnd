@@ -1,6 +1,10 @@
-<div class="container">
-  <button class="btn btn-primary mt-3" (click)="openAddApartmentGroupModal()">Add new</button>
-    <div *ngFor="let group of apartmentGroups" class="card mt-3">
+ <div class="container mt-3">
+    <button class="btn float-right" (click)="openAddApartmentGroupModal()" ><i class="material-icons text-primary">add_circle_outline</i></button>
+    
+  
+ 
+
+    <!-- <div *ngFor="let group of apartmentGroups" class="card mt-3">
         <div class="card-header">
           <a type="button" (click)="navigateToDetails(group.id)">{{group.name}}</a>
         </div>
@@ -10,7 +14,35 @@
           <ng-template #elseBlock><img src="../../../assets/apartmentgroup/no-image.png" alt=""></ng-template>
           <p class="card-text">{{group.description}}.</p>
         </div>
-      </div>
+      </div>  -->
+
+      <table class="table table-striped table-light">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of apartmentGroups">
+            
+            <th scope="row">1</th>
+            <td>{{item.name}}</td>
+            <td>{{item.description}}</td>
+            <td><button class="btn" (click)="openAddApartmentGroupModal(item)" ><i class="edit-icon material-icons">edit</i></button></td>
+            <td><button class="btn" (click)="deleteApartmentGroup(item.id)" ><i class="edit-icon material-icons text-danger">delete_forever</i></button></td>
+
+
+
+          </tr>
+          
+        </tbody>
+      </table>
 
       
 </div>
+
+      
+      

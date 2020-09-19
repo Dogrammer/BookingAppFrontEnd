@@ -1,8 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/font-awesome/css/font-awesome.min.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~ngx-toastr/toastr';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// th,td{
+//     /*use this property to disbale soft wrap*/
+//     white-space: nowrap;
+//     /*To make extra certain,add this css property*/
+//     word-break: keep-all;
+
+// }
+
+// .ngx-datatable.material {
+//     .datatable-header {
+//       border: 0 !important;
+//     //   height: 100px;    
+//       .datatable-header-cell {
+//         background: #0075C2;
+//         color: white !important;
+//         // border: 2px solid black;
+//         height: 200%;
+//         // border-radius: 5% 5% 5% 5%;
+//       }
+//     }
+//   }
+  
+  
+  // :host .ngx-datatable {
+  // .datatable-body {
+  //     .progress-linear {
+  //     display: block;
+  //     position: relative;
+  //     width: 100%;
+  //     height: 8px;
+  //     padding: 0;
+  //     margin: 0;
+  //     position: absolute;
+  //     .container {
+  //         display: block;
+  //         position: relative;
+  //         overflow: hidden;
+  //         width: 100%;
+  //         height: 8px;
+  //         -webkit-transform: translate(0, 0) scale(1, 1);
+  //         transform: translate(0, 0) scale(1, 1);
+  //         background-color: #00ABE8;
+  //         .bar {
+  //         transition: all .15s linear;
+  //         -webkit-animation: query 0.5s infinite cubic-bezier(0.39, 0.575, 0.565, 1);
+  //         animation: query 0.5s infinite cubic-bezier(0.39, 0.575, 0.565, 1);
+  //         transition: -webkit-transform .15s linear;
+  //         transition: transform .15s linear;
+  //         background-color: #0068A4;
+  //         position: absolute;
+  //         left: 0;
+  //         top: 0;
+  //         bottom: 0;
+  //         width: 100%;
+  //         height: 8px;
+  //         }
+  //     }
+      // }
+  // }
+  // }

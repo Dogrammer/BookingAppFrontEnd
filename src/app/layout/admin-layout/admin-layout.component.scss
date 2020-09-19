@@ -2,6 +2,17 @@
     overflow-x: hidden;
  }
 
+ .sidebar-heading {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+ }
+
+ .sidebar-heading h3 {
+   font-weight: 500;
+
+ }
+
 #sidebar-wrapper {
   min-height: 100vh;
   margin-left: -15rem;
@@ -18,6 +29,21 @@
 
 #sidebar-wrapper .list-group {
   width: 15rem;
+  
+}
+
+#sidebar-wrapper .list-group li {
+  text-align: center;
+}
+
+#item {
+  // color: red;
+  display: flex;
+  justify-content: center;
+}
+
+#item a {
+  padding-top: 5px;
 }
 
 #page-content-wrapper {
@@ -41,4 +67,29 @@
   #wrapper.toggled #sidebar-wrapper {
     margin-left: -15rem;
   }
+
+  .material-icons {
+    // padding-top: 5px;
+    font-size: 28px;
+    color: blue;
+    // text-align: center;
 }
+}
+
+.kurac {
+
+display: flex;
+flex-wrap: wrap;
+}
+
+.kurac p {
+  width: 80%;
+  margin-top: 5%;
+}
+
+.kurac i {
+  width: 20%;
+  margin-top: 3%;
+}
+
+
