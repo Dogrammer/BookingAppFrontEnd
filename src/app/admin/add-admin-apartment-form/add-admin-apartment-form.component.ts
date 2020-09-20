@@ -4,6 +4,8 @@ import { ApartmentDetailService } from 'src/app/apartment/services/apartment-det
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { AdminApartmentGroupService } from '../services/admin-apartment-group.service';
 import { AdminApartmentService } from '../services/admin-apartment.service';
+import { CityService } from '../services/city.service';
+import { CountryService } from '../services/country.service';
 
 @Component({
   selector: 'app-add-admin-apartment-form',
@@ -20,16 +22,27 @@ export class AddAdminApartmentFormComponent implements OnInit {
 
   apartmentTypes;
   apartmentGroups;
+  countries;
+  cities;
   apartmentDetailGroup: FormGroup = this.formBuilder.group({
     name: ['', Validators.required],
     description: [''],
     userId: [null],
     apartmentTypeId: [null, Validators.required],
     apartmentGroupId: [null, Validators.required],
+    cityId: [null, Validators.required],
+    countryId: [null, Validators.required],
+    address: ['', Validators.required],
     size: [null],
     numberOfBedrooms: [null],
     climateControl: [null],
-
+    capacity: [null],
+    wifi: [null],
+    kitchenTool: [null],
+    bbqTools: [null],
+    workSpace: [null],
+    closestBeachDistance: [null],
+    closestMarketDistance: [null]
     
   });
   constructor(
@@ -37,6 +50,8 @@ export class AddAdminApartmentFormComponent implements OnInit {
     private apartmentGroupService: ApartmentDetailService,
     private adminApartmentGroupService: AdminApartmentGroupService,
     private apartmentService: AdminApartmentService,
+    private cityService: CityService,
+    private countryService: CountryService,
     private authService: AuthService
   )
     
@@ -45,6 +60,8 @@ export class AddAdminApartmentFormComponent implements OnInit {
   ngOnInit() {
     this.getApartmentTypes();
     this.getApartmentGroups();
+    this.getCities();
+    this.getCountries();
     console.log(this.row);
 
     this
@@ -69,6 +86,18 @@ export class AddAdminApartmentFormComponent implements OnInit {
   getApartmentTypes() {
     this.apartmentService.getApartmentTypes().subscribe(
       data => { this.apartmentTypes = data; console.log(this.apartmentTypes)}
+    )
+  }
+
+  getCountries() {
+    this.countryService.getCountries().subscribe(
+      data => { this.countries = data; console.log(this.countries)}
+    )
+  }
+
+  getCities() {
+    this.cityService.getCities().subscribe(
+      data => { this.cities = data; console.log(this.cities)}
     )
   }
 
@@ -102,9 +131,43 @@ export class AddAdminApartmentFormComponent implements OnInit {
     return this.apartmentDetailGroup.get('numberOfBedrooms');
   }
 
-  get climateControl(): AbstractControl {
-    return this.apartmentDetailGroup.get('climateControl');
+  get cityId(): AbstractControl {
+    return this.apartmentDetailGroup.get('cityId');
   }
+
+  get countryId(): AbstractControl {
+    return this.apartmentDetailGroup.get('countryId');
+  }
+
+  get address(): AbstractControl {
+    return this.apartmentDetailGroup.get('address');
+  }
+
+  get closestBeachDistance(): AbstractControl {
+    return this.apartmentDetailGroup.get('closestBeachDistance');
+  }
+
+  get closestMarketDistance(): AbstractControl {
+    return this.apartmentDetailGroup.get('closestMarketDistance');
+  }
+
+  get capacity(): AbstractControl {
+    return this.apartmentDetailGroup.get('capacity');
+  }
+
+  // get capacity(): AbstractControl {
+  //   return this.apartmentDetailGroup.get('capacity');
+  // }
+
+  // get capacity(): AbstractControl {
+  //   return this.apartmentDetailGroup.get('capacity');
+  // }
+
+  // get capacity(): AbstractControl {
+  //   return this.apartmentDetailGroup.get('capacity');
+  // }
+
+  
 
   
 

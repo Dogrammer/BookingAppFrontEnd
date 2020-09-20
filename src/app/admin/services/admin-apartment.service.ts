@@ -39,6 +39,14 @@ export class AdminApartmentService {
     );
   }
 
+  // getPricingPerio() {
+  //   return this.http.get(environment.apiUrl + this.APARTMENT_TYPE_CONTROLER + '/getApartmentTypes').pipe(
+  //     map( data => {
+  //       return data
+  //     })
+  //   );
+  // }
+
   // saveCountry(countryData) {
   //   return this.http.post(environment.apiUrl + this.CONTROLER_NAME + '/countries', countryData).pipe(
   //     map( data => {

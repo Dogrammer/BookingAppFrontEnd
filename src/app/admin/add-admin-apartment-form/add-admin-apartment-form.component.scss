@@ -23,3 +23,19 @@
     font-size:40px;
   
   }
+
+  .price {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .price h5 {
+    width:85%;
+}
+
+.price button {
+    padding-top: 10px;
+    font-size: 30px;
+    width: 5%;
+}

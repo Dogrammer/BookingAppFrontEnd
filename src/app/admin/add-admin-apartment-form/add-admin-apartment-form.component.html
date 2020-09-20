@@ -12,7 +12,7 @@
       <div>
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
-            <h5 class="text-primary">Osnovne informacije <span class="text-danger">*</span></h5>
+            <h4 class="text-primary">Osnovne informacije <span class="text-danger">*</span></h4>
           </div>
           <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
             <label for="firstName" class="required">Naziv</label>
@@ -63,40 +63,7 @@
             <div class="invalid-feedback">Polje je obavezno</div>
           </div>
 
-          <!-- <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
-            <label for="dateOfBirth" class="required">Datum rođenja</label>
-            <div class="input-group">
-              <input class="form-control" placeholder="dd.mm.yyyy." name="dp" formControlName="dateOfBirth"
-              ngbDatepicker #d="ngbDatepicker" [readonly]="true" [minDate]="{year: 1940, month: 1, day: 1}" [maxDate]="dynamicToday"
-                [ngClass]="{'is-invalid': dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched || myform.submitted)}">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar-box" (click)="d.toggle()" type="button"><i
-                    class="i-Calendar-4"></i></button>
-              </div>
-              <div class="invalid-feedback">Polje je obavezno</div>
-            </div>
-          </div> -->
-          <!-- <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
-            <label class="checkbox checkbox-primary">
-              <input type="checkbox" formControlName="climateControl">
-              <span>Klimatizacija</span>
-              <span class="checkmark"></span>
-            </label>
-          </div> -->
-          <!-- <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
-            <label class="checkbox checkbox-primary">
-              <input type="checkbox" formControlName="isForeigner" (click)="onClickIsForeigner($event)">
-              <span>Roditelj je <strong>stranac</strong>?</span>
-              <span class="checkmark"></span>
-            </label>
-          </div> -->
-          <!-- <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
-            <label class="checkbox checkbox-primary">
-              <input type="checkbox" formControlName="isAsylum">
-              <span>Azilant/izbjeglica</span>
-              <span class="checkmark"></span>
-            </label>
-          </div> -->
+          
         </div>
         <div class="mt-2 mb-3 border-top"></div>
       </div>
@@ -104,57 +71,42 @@
       <div>
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
-            <h5 class="text-primary">Informacije o lokaciji <span class="text-danger">*</span></h5>
+            <h4 class="text-primary">Informacije o lokaciji <span class="text-danger">*</span></h4>
           </div>
           <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
-            <label for="firstName" class="required">Naziv</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Naziv apartmana"
-            formControlName="name" [readonly]="row && row.IsNiasUser"
-              [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched || myform.submitted)}"
+            <label for="address" class="required">Adresa apartmana</label>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Adresa apartmana"
+            formControlName="address" [readonly]="row && row.IsNiasUser"
+              [ngClass]="{'is-invalid': address.invalid && (address.dirty || address.touched || myform.submitted)}"
               autocomplete="off">
             <div class="invalid-feedback">Polje je obavezno</div>
           </div>
-          <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
-            <label for="description" class="required">Kratki opis</label>
-            <input type="text" class="form-control" id="description" name="description" placeholder="Kratki opis apartmana"
-            formControlName="description" [readonly]="row && row.IsNiasUser"
-              [ngClass]="{'is-invalid': description.invalid && (description.dirty || description.touched || myform.submitted)}"
-              autocomplete="off">
-            <div class="invalid-feedback">Polje je obavezno</div>
-          </div>
+          
           <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
-            <label for="apartmentTypeId" class="required">Vrsta apartmana</label>
-            <ng-select [items]="apartmentTypes" bindLabel="name" bindValue="id" labelForId="state" placeholder="Izaberi..."
-              clearAllText="Clear" formControlName="apartmentTypeId" 
-              [ngClass]="{'is-invalid': apartmentTypeId.invalid && (apartmentTypeId.dirty || apartmentTypeId.touched || myform.submitted)}">
+            <label for="countryId" class="required">Država</label>
+            <ng-select [items]="countries" bindLabel="name" bindValue="id" labelForId="state" placeholder="Izaberi..."
+              clearAllText="Clear" formControlName="countryId" 
+              [ngClass]="{'is-invalid': countryId.invalid && (countryId.dirty || countryId.touched || myform.submitted)}">
             </ng-select>
             <div class="invalid-feedback">Polje je obavezno</div>
           </div>
-          <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
-            <label for="apartmentGroupId" class="required">Grupa apartmana</label>
-            <ng-select [items]="apartmentGroups" bindLabel="name" bindValue="id" labelForId="state" placeholder="Izaberi..."
-              clearAllText="Clear" formControlName="apartmentGroupId" 
-              [ngClass]="{'is-invalid': apartmentGroupId.invalid && (apartmentGroupId.dirty || apartmentGroupId.touched || myform.submitted)}">
+          <div *ngIf="countryId.valid" class="col-lg-4 col-md-12 col-sm-12 mb-3">
+            <label for="cityId" class="required">Grad</label>
+            <ng-select [items]="cities" bindLabel="name" bindValue="id" labelForId="state" placeholder="Izaberi..."
+              clearAllText="Clear" formControlName="cityId" 
+              [ngClass]="{'is-invalid': cityId.invalid && (cityId.dirty || cityId.touched || myform.submitted)}">
             </ng-select>
             <div class="invalid-feedback">Polje je obavezno</div>
           </div>
-          <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
-            <label for="size" class="required">Veličina</label>
-            <input type="number" class="form-control" id="size" name="size" placeholder="Veličina u kvadratima"
-            formControlName="size" [readonly]="row && row.IsNiasUser"
-              [ngClass]="{'is-invalid': size.invalid && (size.dirty || size.touched || myform.submitted)}"
-              autocomplete="off">
-            <div class="invalid-feedback">Polje je obavezno</div>
-          </div>
-          <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
-            <label for="numberOfBedrooms" class="required">Broj spavaćih soba</label>
-            <input type="number" class="form-control" id="numberOfBedrooms" name="numberOfBedrooms" placeholder="Broj spavaćih soba"
-            formControlName="numberOfBedrooms" [readonly]="row && row.IsNiasUser"
-              [ngClass]="{'is-invalid': numberOfBedrooms.invalid && (numberOfBedrooms.dirty || numberOfBedrooms.touched || myform.submitted)}"
-              autocomplete="off">
-            <div class="invalid-feedback">Polje je obavezno</div>
-          </div>
+        </div>
+        <div class="mt-2 mb-3 border-top"></div>
+      </div>
 
+      <div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+            <h4 class="text-primary">Dodatne informacije <span class="text-danger">*</span></h4>
+          </div>
           <!-- <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
             <label for="dateOfBirth" class="required">Datum rođenja</label>
             <div class="input-group">
@@ -168,34 +120,154 @@
               <div class="invalid-feedback">Polje je obavezno</div>
             </div>
           </div> -->
-          <!-- <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
-            <label class="checkbox checkbox-primary">
-              <input type="checkbox" formControlName="climateControl">
-              <span>Klimatizacija</span>
-              <span class="checkmark"></span>
-            </label>
+
+          <!-- radio buttoni -->
+          <!-- <div class="card-body">
+            <div class="card-title delete-contract-button">
+              <h5 class="text-primary text-22">
+                Osnovna dokumentacija
+              </h5>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 74.02%">Naziv dokumenta</th>
+                  <th scope="col" style="width: 8.66%">Odobreno</th>
+                  <th scope="col" style="width: 8.66%">Dodano</th>
+                  <th scope="col" style="width: 8.66%">Akcija</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let document of basicDocumentTypes">
+                  <td>
+                    {{ document.name }}
+                    <button type="button" class="btn btn-outline-secondary mr-2 family-type-popover p-0" placement="right"
+                      triggers="mouseenter:mouseleave" [ngbPopover]="document.description" popoverTitle="Opis"
+                      container="body">
+                      <i class="i-Information" style="font-size: 1.3rem;"></i>
+                    </button>
+                  </td>
+                  <td>
+                    <label class="switch" style="padding:2%;">
+                      <input type="checkbox" [checked]="document.documents?.length > 0 && document.isVerified" disabled>
+                      <span class="slider round"></span>
+                    </label>
+                  </td>
+                  <td>
+                    <label class="switch" style="padding:2%;">
+                      <input type="checkbox" [checked]="document.documents?.length > 0 && document" disabled>
+                      <span class="slider round"></span>
+                    </label>
+                  </td>
+                  <td>
+                    <button class="btn btn-outline-primary" style="margin-top: -2.5%;"
+                      (click)="preview(document.documents[0])">Otvori</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="row" style="justify-content: center;" *ngIf="isLoadingDocuments">
+              <div class="spinner-bubble spinner-bubble-primary m-5"></div>
+              <div class="col-md-3" style="display:flex;flex-direction: column;justify-content: center;">
+                <h1 class="text-18 text-primary">Učitavanje dokumentacije</h1>
+              </div>
+            </div>
           </div> -->
-          <!-- <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
-            <label class="checkbox checkbox-primary">
-              <input type="checkbox" formControlName="isForeigner" (click)="onClickIsForeigner($event)">
-              <span>Roditelj je <strong>stranac</strong>?</span>
-              <span class="checkmark"></span>
-            </label>
-          </div> -->
-          <!-- <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
-            <label class="checkbox checkbox-primary">
-              <input type="checkbox" formControlName="isAsylum">
-              <span>Azilant/izbjeglica</span>
-              <span class="checkmark"></span>
-            </label>
-          </div> -->
+
+          <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
+            <label for="capacity" class="required">Kapacitet</label>
+            <input type="number" class="form-control" id="capacity" name="capacity" placeholder="Broj osoba.."
+            formControlName="capacity" [readonly]="row && row.IsNiasUser"
+              [ngClass]="{'is-invalid': capacity.invalid && (capacity.dirty || capacity.touched || myform.submitted)}"
+              autocomplete="off">
+            <div class="invalid-feedback">Polje je obavezno</div>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
+            <label for="closestBeachDistance" class="required">Najbliža plaža</label>
+            <input type="number" class="form-control" id="closestBeachDistance" name="closestBeachDistance" placeholder="Udaljenost plaže od apartmana.."
+            formControlName="closestBeachDistance" [readonly]="row && row.IsNiasUser"
+              [ngClass]="{'is-invalid': closestBeachDistance.invalid && (closestBeachDistance.dirty || closestBeachDistance.touched || myform.submitted)}"
+              autocomplete="off">
+            <div class="invalid-feedback">Polje je obavezno</div>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
+            <label for="closestMarketDistance" class="required">Najbliža trgovina</label>
+            <input type="number" class="form-control" id="closestMarketDistance" name="closestMarketDistance" placeholder="Udaljenost trgovine od apartmana.."
+            formControlName="closestMarketDistance" [readonly]="row && row.IsNiasUser"
+              [ngClass]="{'is-invalid': closestMarketDistance.invalid && (closestMarketDistance.dirty || closestMarketDistance.touched || myform.submitted)}"
+              autocomplete="off">
+            <div class="invalid-feedback">Polje je obavezno</div>
+          </div>
+          
+          <div class="custom-control custom-switch col-lg-4 col-md-12 col-sm-12 mb-3">
+            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+            <label class="custom-control-label" for="customSwitch1">Klimatizacija</label>
+          </div>
+          <div class="custom-control custom-switch col-lg-4 col-md-12 col-sm-12 mb-3">
+            <input type="checkbox" class="custom-control-input" id="customSwitch2">
+            <label class="custom-control-label" for="customSwitch2">Kuhinjski pribor</label>
+          </div>
+          <div class="custom-control custom-switch col-lg-4 col-md-12 col-sm-12 mb-3">
+            <input type="checkbox" class="custom-control-input" id="customSwitch3">
+            <label class="custom-control-label" for="customSwitch3">Wifi</label>
+          </div>
+          <div class="custom-control custom-switch col-lg-4 col-md-12 col-sm-12 mb-3">
+            <input type="checkbox" class="custom-control-input" id="customSwitch4">
+            <label class="custom-control-label" for="customSwitch4">Oprema za roštilj</label>
+          </div>
+          <div class="custom-control custom-switch col-lg-4 col-md-12 col-sm-12 mb-3">
+            <input type="checkbox" class="custom-control-input" id="customSwitch5">
+            <label class="custom-control-label" for="customSwitch5">Mjesto za rad</label>
+          </div>
+          <div class="custom-control custom-switch col-lg-4 col-md-12 col-sm-12 mb-3">
+            <input type="checkbox" class="custom-control-input" id="customSwitch6">
+            <label class="custom-control-label" for="customSwitch6">Wifi</label>
+          </div>
+
+          
+                      <!-- <label class="switch" style="padding:1.75%;">
+                        <input type="checkbox" [checked]="true" disabled>
+                        <span class="slider round"></span>
+                      </label> -->
+                   
+            
+          
+          
+          
+          
         </div>
         <div class="mt-2 mb-3 border-top"></div>
       </div>
 
-      <button type="submit"></button>
+      
+
+      
+
+      <!-- <button class="btn btn-primary" type="submit">Spremi</button> -->
         
     </form>
+
+    <form>
+      <div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+            <h4 class="text-primary">Period plaćanja <span class="text-danger">*</span></h4>
+          </div>
+          <div class="price">
+            <button class="btn"  ><i id="add" class="material-icons text-primary">add</i></button>
+            <h5 class="text-black">Dodaj period plaćanja</h5>
+            <!-- <button class="btn float-right" (click)="addComponentNavigation()" ><i id="add" class="material-icons text-primary">add_circle_outline</i></button> -->
+          </div>
+
+
+          
+          
+          
+        </div>
+        <div class="mt-2 mb-3 border-top"></div>
+      </div>
+    </form>
+    
   
      
 </div>
