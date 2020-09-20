@@ -1,3 +1,7 @@
+.card {
+    width: 80%;
+    height: 50%;
+}
 .card-body {
     display: flex;
     flex-wrap: wrap;
@@ -12,3 +16,29 @@
 .card-text {
     width: 65%;
 }
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header h2 {
+    width:85%;
+}
+
+.header i {
+    font-size: 30px;
+    width: 5%;
+
+}
+
+#ic {
+    font-size: 30px;
+    width: 5%;
+  
+  }
+  
+  #add {
+    font-size:40px;
+  
+  }

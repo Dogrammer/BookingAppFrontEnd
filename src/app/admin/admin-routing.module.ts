@@ -9,6 +9,7 @@ import { AdminApartmentDetailComponent } from './admin-apartment-detail/admin-ap
 import { AdminApartmentComponent } from './admin-apartment/admin-apartment.component';
 import { AdminApartmentGroupComponent } from './admin-apartment-group/admin-apartment-group.component';
 import { componentFactoryName } from '@angular/compiler';
+import { AddAdminApartmentFormComponent } from './add-admin-apartment-form/add-admin-apartment-form.component';
 
 
 const routes: Routes = [
@@ -29,9 +30,14 @@ const routes: Routes = [
     component: AdminApartmentComponent
   },
   {
+    path: 'apartment/new-apartment', 
+    component: AddAdminApartmentFormComponent
+  },
+  {
     path: 'apartment/:id', 
     component: AdminApartmentDetailComponent
   },
+  
   { 
     path: '',   redirectTo: 'home', pathMatch: 'full'
   }

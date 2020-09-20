@@ -35,7 +35,7 @@ export class AdminApartmentGroupComponent implements OnInit {
 
   constructor(private apartmentGroupService: AdminApartmentGroupService, 
               public dialog: MatDialog,
-              private toastr: ToastrService,
+              // private toastr: ToastrService,
               private ngbModalService: NgbModal,
               private router: Router) { }
 
@@ -83,7 +83,7 @@ export class AdminApartmentGroupComponent implements OnInit {
           timeOut: 7500
         }
         console.log('id delete',id);
-        this.toastr.info('Uspješno ste obrisali grupu', 'Uspjeh', toastrVar);
+        // this.toastr.info('Uspješno ste obrisali grupu', 'Uspjeh', toastrVar);
         // this.isLoadingApproval = true;
         this.apartmentGroupService.deleteApartmentGroup(id).pipe(take(1)).subscribe(data => {
           if (data) {

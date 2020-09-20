@@ -12,10 +12,11 @@ export class AdminApartmentService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly CONTROLER_NAME = 'Apartment';
+  private readonly APARTMENT_CONTROLER = 'Apartment';
+  private readonly APARTMENT_TYPE_CONTROLER = 'ApartmentType';
 
   getApartmentById(id): Observable<IApartment[]> {
-    return this.http.get<IApartment[]>(environment.apiUrl + this.CONTROLER_NAME + '/getApartmentByApartmentGroupIdForAdmins/' + id).pipe(
+    return this.http.get<IApartment[]>(environment.apiUrl + this.APARTMENT_CONTROLER + '/getApartmentByApartmentGroupIdForAdmins/' + id).pipe(
       map( data => {
         return data
       })
@@ -23,7 +24,15 @@ export class AdminApartmentService {
   }
 
   getApartment(id): Observable<IApartment> {
-    return this.http.get<IApartment>(environment.apiUrl + this.CONTROLER_NAME + '/getApartmentForAdmin/' + id).pipe(
+    return this.http.get<IApartment>(environment.apiUrl + this.APARTMENT_CONTROLER + '/getApartmentForAdmin/' + id).pipe(
+      map( data => {
+        return data
+      })
+    );
+  }
+
+  getApartmentTypes() {
+    return this.http.get(environment.apiUrl + this.APARTMENT_TYPE_CONTROLER + '/getApartmentTypes').pipe(
       map( data => {
         return data
       })

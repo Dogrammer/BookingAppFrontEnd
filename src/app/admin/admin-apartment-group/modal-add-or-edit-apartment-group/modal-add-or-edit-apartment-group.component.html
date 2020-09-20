@@ -21,7 +21,7 @@
         <div class="invalid-feedback">Polje je obavezno</div>
       </div>
 <!-- ispod ide provjera ako je super admin -->
-      <div *ngIf="isAdmin == true && action == 'add'" class="col-sm-12 col-md-12 col-lg-12  mb-3">
+      <div *ngIf="isAdmin == true" class="col-sm-12 col-md-12 col-lg-12  mb-3">
         <label id="users" for="users" class="required">Apartment managers</label>
         <ng-select [items]="users" bindLabel="userName" bindValue="id" labelForId="state" placeholder="Izaberi..."
           clearAllText="Clear" formControlName="userId"
@@ -71,8 +71,8 @@
       <button type="button" class="btn btn-outline-secondary btn-rounded" (click)="modal.close()">Odustani</button>
       <!-- Edit button -->
        <!-- [disabled]="!otherChildGroup.valid"  -->
-      <!-- <button *ngIf="action === 'edit'" [disabled]="!myForm.valid" type="button" ngbAutofocus
-        class="btn btn-primary btn-rounded" (click)="editApartmentGroup()">Spremi</button> -->
+      <button *ngIf="action === 'edit'" [disabled]="!apartmentGroupGroup.valid" type="button" ngbAutofocus
+        class="btn btn-primary btn-rounded" (click)="editApartmentGroup()">Spremi</button>
       <!-- Create button -->
       <!--  -->
       <button [disabled]="!apartmentGroupGroup.valid" *ngIf="action === 'add'" type="button" ngbAutofocus

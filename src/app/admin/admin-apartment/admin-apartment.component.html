@@ -1,4 +1,11 @@
-<div class="container">
+<div class="container mt-3">
+
+  <div class="header">
+    <i id="ic" class="material-icons text-primary">house</i>
+    <h2 class="text-black">Apartments</h2>
+    <button class="btn float-right" (click)="addComponentNavigation()" ><i id="add" class="material-icons text-primary">add_circle_outline</i></button>
+  </div>
+
     <div *ngFor="let a of apartments" class="card mt-3">
         <div class="card-header">
           <a type="button" (click)="navigateToDetails(a.id)">{{a.name}}</a>

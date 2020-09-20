@@ -17,10 +17,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AddAdminApartmentFormComponent } from './add-admin-apartment-form/add-admin-apartment-form.component';
+
 
 
 @NgModule({
-  declarations: [AdminHomeComponent, UploadComponent, ImageUploadComponent, AdminApartmentGroupComponent, AdminApartmentComponent, AdminApartmentDetailComponent, ModalAddOrEditApartmentGroupComponent],
+  declarations: [AdminHomeComponent, UploadComponent, ImageUploadComponent, AdminApartmentGroupComponent, AdminApartmentComponent, AdminApartmentDetailComponent, ModalAddOrEditApartmentGroupComponent, AddAdminApartmentFormComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

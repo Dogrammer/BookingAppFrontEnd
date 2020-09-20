@@ -22,6 +22,7 @@ import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './services/http.interceptor';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ToastrModule } from 'ngx-toastr/toastr/toastr.module';
+// import { ToastrModule } from 'ngx-toastr/toastr/toastr.module';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -48,11 +49,12 @@ export function jwtOptionsFactory() {
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ToastrModule.forRoot(),
+    // ToastrModule.forRoot(),
     NgxDatatableModule,
     NgImageSliderModule,
     NgbModule,
     BrowserAnimationsModule,
+    // ToastrModule.forRoot(),
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule ,

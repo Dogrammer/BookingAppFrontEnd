@@ -1,5 +1,10 @@
  <div class="container mt-3">
-    <button class="btn float-right" (click)="openAddApartmentGroupModal()" ><i class="material-icons text-primary">add_circle_outline</i></button>
+   <div class="header">
+      <i id="ic" class="material-icons text-primary">deck</i>
+      <h2 class="text-black">Apartment Groups</h2>
+      <button class="btn float-right" (click)="openAddApartmentGroupModal()" ><i id="add" class="material-icons text-primary">add_circle_outline</i></button>
+   </div>
+    
     
   
  
@@ -28,7 +33,7 @@
         <tbody>
           <tr *ngFor="let item of apartmentGroups">
             
-            <th scope="row">1</th>
+            <td><button class="btn" (click)="navigateToDetails(item.id)" ><i class="edit-icon material-icons text-info">zoom_in</i></button></td>
             <td>{{item.name}}</td>
             <td>{{item.description}}</td>
             <td><button class="btn" (click)="openAddApartmentGroupModal(item)" ><i class="edit-icon material-icons">edit</i></button></td>

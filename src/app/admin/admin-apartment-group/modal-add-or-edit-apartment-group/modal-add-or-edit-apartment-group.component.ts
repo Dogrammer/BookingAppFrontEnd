@@ -23,7 +23,8 @@ export class ModalAddOrEditApartmentGroupComponent implements OnInit {
   apartmentGroupGroup: FormGroup = this.formBuilder.group({
     name: ['', Validators.required],
     description: [''],
-    userId: [null]
+    userId: [null],
+    // userName: ['', Validators.required]
     // isActive: [true],
     // activeFrom: [ new Date()],
     // activeTo: [this.tenYearsFromNow]
@@ -38,12 +39,16 @@ export class ModalAddOrEditApartmentGroupComponent implements OnInit {
     {}
 
   ngOnInit() {
+    console.log(this.row);
+    
     this.checkIfAdmin();
     this.getApartmentManagers();
     if(this.row && this.action == 'edit') {
       this.apartmentGroupGroup.patchValue({
         name: this.row.name,
         description: this.row.description,
+        userId: this.row.user.id,
+        // userName: this.row.user.userName
         // isActive: this.row.isActive,
         // activeFrom: this.row.activeFrom,
       });
@@ -99,6 +104,10 @@ export class ModalAddOrEditApartmentGroupComponent implements OnInit {
   get userId(): AbstractControl {
     return this.apartmentGroupGroup.get('userId');
   }
+
+  // get userName(): AbstractControl {
+  //   return this.apartmentGroupGroup.get('userName');
+  // }
   // get requestTypePerAgeId(): AbstractControl {
   //   return this.documentTypeGroup.get('requestTypePerAgeId');
   // }

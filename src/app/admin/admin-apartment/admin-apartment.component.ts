@@ -22,6 +22,8 @@ export class AdminApartmentComponent implements OnInit {
   ngOnInit(): void {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
     this.getApartmentById(this.id);
+
+
   }
 
   getApartmentById(id) {
@@ -32,6 +34,10 @@ export class AdminApartmentComponent implements OnInit {
 
   navigateToDetails(id) {
     this.router.navigate(['/admin/apartment/', id]);
+  }
+
+  addComponentNavigation() {
+    this.router.navigate(['/admin/apartment/new-apartment']);
   }
 
 

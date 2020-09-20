@@ -31,7 +31,9 @@ export class ApartmentGroupService {
   }
 
   editApartmentGroup(id, apartmentGroupData) {
-    return this.http.put(environment.apiUrl + this.CONTROLER_NAME + '/editApartmentGroup' + id, apartmentGroupData).pipe(
+    console.log('test');
+    
+    return this.http.put(environment.apiUrl + this.CONTROLER_NAME + '/editApartmentGroup/' + id, apartmentGroupData).pipe(
       map( data => {
         return data
       })
