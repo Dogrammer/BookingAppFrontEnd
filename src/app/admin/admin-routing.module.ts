@@ -10,6 +10,8 @@ import { AdminApartmentComponent } from './admin-apartment/admin-apartment.compo
 import { AdminApartmentGroupComponent } from './admin-apartment-group/admin-apartment-group.component';
 import { componentFactoryName } from '@angular/compiler';
 import { AddAdminApartmentFormComponent } from './add-admin-apartment-form/add-admin-apartment-form.component';
+import { AdminPricingPeriodDetailsComponent } from './admin-pricing-period-details/admin-pricing-period-details.component';
+import { AdminApartmentImagesComponent } from './admin-apartment-images/admin-apartment-images.component';
 
 
 const routes: Routes = [
@@ -32,6 +34,18 @@ const routes: Routes = [
   {
     path: 'apartment/new-apartment', 
     component: AddAdminApartmentFormComponent
+  },
+  {
+    path: 'apartment/:id/edit-apartment',
+    component: AddAdminApartmentFormComponent
+  },
+  {
+    path: 'apartment/:id/pricing-period-details',
+    component: AdminPricingPeriodDetailsComponent
+  },
+  {
+    path: 'apartment/:id/images',
+    component: AdminApartmentImagesComponent
   },
   {
     path: 'apartment/:id', 

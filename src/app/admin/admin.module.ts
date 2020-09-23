@@ -18,11 +18,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddAdminApartmentFormComponent } from './add-admin-apartment-form/add-admin-apartment-form.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AdminPricingPeriodDetailsComponent } from './admin-pricing-period-details/admin-pricing-period-details.component';
+import { AdminApartmentImagesComponent } from './admin-apartment-images/admin-apartment-images.component';
 
 
 
 @NgModule({
-  declarations: [AdminHomeComponent, UploadComponent, ImageUploadComponent, AdminApartmentGroupComponent, AdminApartmentComponent, AdminApartmentDetailComponent, ModalAddOrEditApartmentGroupComponent, AddAdminApartmentFormComponent],
+  declarations: [AdminHomeComponent, UploadComponent, ImageUploadComponent, AdminApartmentGroupComponent, AdminApartmentComponent, AdminApartmentDetailComponent, ModalAddOrEditApartmentGroupComponent, AddAdminApartmentFormComponent, AdminPricingPeriodDetailsComponent, AdminApartmentImagesComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -30,6 +36,10 @@ import { AddAdminApartmentFormComponent } from './add-admin-apartment-form/add-a
     ReactiveFormsModule,
     NgSelectModule,
     MatButtonModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatIconModule,
+    MatProgressBarModule,
     MatFormFieldModule,
     MatDialogModule,
     NgxDatatableModule,

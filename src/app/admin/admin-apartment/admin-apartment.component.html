@@ -9,6 +9,12 @@
     <div *ngFor="let a of apartments" class="card mt-3">
         <div class="card-header">
           <a type="button" (click)="navigateToDetails(a.id)">{{a.name}}</a>
+          <button class="btn btn-outline-secondary mr-2" (click)="openPricingPeriodPage(a.id)">Dodaj cijene</button>
+          <button class="btn btn-outline-secondary mr-2" (click)="openImageUploadPage(a.id)">Dodaj fotografije</button>
+          <button class="btn btn-info mr-2" (click)="openEditPage(a.id)"> Uredi</button>
+          <button class="btn btn-danger mr-2"> Izbriši</button>
+
+
 
         </div>
         <div class="card-body">
@@ -19,3 +25,5 @@
         </div>
       </div>
 </div>
+
+<app-admin-pricing-period-details [Message]="Message"></app-admin-pricing-period-details>

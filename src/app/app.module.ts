@@ -15,6 +15,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule } from '@angular/material/input';
+import {MatIconModule  } from '@angular/material/icon'
+import {MatProgressBarModule} from '@angular/material/progress-bar'
+import {MatToolbarModule} from '@angular/material/toolbar'
+import {MatCardModule} from '@angular/material/card'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthGuardService } from './auth/services/auth-guard.service';
@@ -57,6 +61,10 @@ export function jwtOptionsFactory() {
     // ToastrModule.forRoot(),
     MatButtonModule,
     MatFormFieldModule,
+    MatToolbarModule,  
+    MatIconModule,  
+    MatCardModule,  
+    MatProgressBarModule,
     MatInputModule ,
     MatDialogModule,
     JwtModule.forRoot({

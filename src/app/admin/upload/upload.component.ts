@@ -17,6 +17,7 @@ export class UploadComponent implements OnInit {
     apartmentId: new FormControl(null, [Validators.required]),
     file: new FormControl('', [Validators.required]),
     fileSource: new FormControl('', [Validators.required])
+    
   });
     
   constructor(private http: HttpClient) { }

@@ -39,6 +39,37 @@ export class AdminApartmentService {
     );
   }
 
+  saveApartment(apartmentData) {
+    
+    const request = {
+      'address': apartmentData.address,
+      'apartmentGroupId': apartmentData.apartmentGroupId,
+      'apartmentTypeId': apartmentData.apartmentTypeId,
+      'bbqTools': apartmentData.bbqTools,
+      'capacity': apartmentData.capacity,
+      'cityId': apartmentData.cityId,
+      'climateControl': apartmentData.climateControl,
+      'closestBeachDistance': apartmentData.closestBeachDistance,
+      'closestMarketDistance' : apartmentData.closestMarketDistance,
+      'countryId': apartmentData.countryId,
+      'description': apartmentData.description,
+      'kitchenTool': apartmentData.kitchenTool,
+      'name': apartmentData.name,
+      'numberOfBedrooms': apartmentData.numberOfBedrooms,
+      'size': apartmentData.size,
+      'workSpace': apartmentData.workSpace,
+      'wifi': apartmentData.wifi
+    }
+
+    console.log('usao u servis: ',request);
+    
+    return this.http.post(environment.apiUrl + this.APARTMENT_CONTROLER + '/apartments', request).pipe(
+      map( data => {
+        return data
+      })
+    );
+  }
+
   // getPricingPerio() {
   //   return this.http.get(environment.apiUrl + this.APARTMENT_TYPE_CONTROLER + '/getApartmentTypes').pipe(
   //     map( data => {

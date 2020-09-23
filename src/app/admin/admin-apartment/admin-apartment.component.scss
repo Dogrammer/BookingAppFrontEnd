@@ -42,3 +42,16 @@
     font-size:40px;
   
   }
+
+  .card-header {
+      display: flex;
+      flex-wrap: wrap;
+
+  }
+
+  .card-header a {
+    width: 50%;
+    font-size: 1.5em;
+  }
+
+  

@@ -14,6 +14,10 @@ export class AdminApartmentComponent implements OnInit {
 
   apartments: IApartment[] = [];
   id: number;
+  apartmentId;
+
+  Message = "Parent to Child"
+  
 
   constructor(private adminApartmentService: AdminApartmentService, 
               private activatedRoute: ActivatedRoute,
@@ -38,6 +42,29 @@ export class AdminApartmentComponent implements OnInit {
 
   addComponentNavigation() {
     this.router.navigate(['/admin/apartment/new-apartment']);
+  }
+
+  openPricingPeriodPage(id) {
+    console.log(id);
+    this.apartmentId = id;
+    this.router.navigate(['/admin/apartment/', id, 'pricing-period-details']);
+    
+  }
+
+  openImageUploadPage(id) {
+    console.log(id);
+    this.apartmentId = id;
+    this.router.navigate(['/admin/apartment/', id,'images']);
+
+    
+  }
+
+  openEditPage(id) {
+    console.log(id);
+    this.apartmentId = id;
+    this.router.navigate(['/admin/apartment/',id,'edit-apartment']);
+
+    
   }
 
 

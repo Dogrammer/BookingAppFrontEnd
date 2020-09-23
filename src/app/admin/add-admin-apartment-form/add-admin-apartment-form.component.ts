@@ -1,11 +1,18 @@
+import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
+import { ElementRef, ViewChild } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { catchError, map, take } from 'rxjs/operators';
 import { ApartmentDetailService } from 'src/app/apartment/services/apartment-detail.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { AdminApartmentGroupService } from '../services/admin-apartment-group.service';
 import { AdminApartmentService } from '../services/admin-apartment.service';
 import { CityService } from '../services/city.service';
 import { CountryService } from '../services/country.service';
+import { UploadService } from '../services/upload.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-add-admin-apartment-form',
@@ -17,47 +24,61 @@ export class AddAdminApartmentFormComponent implements OnInit {
   @Input() action;
   @Input() row;
 
+  @ViewChild("fileUpload", {static: false}) fileUpload: ElementRef;files  = [];  
+
   // users: any[] =[];
   // isAdmin;
-
+  
   apartmentTypes;
   apartmentGroups;
   countries;
   cities;
-  apartmentDetailGroup: FormGroup = this.formBuilder.group({
-    name: ['', Validators.required],
-    description: [''],
-    userId: [null],
-    apartmentTypeId: [null, Validators.required],
-    apartmentGroupId: [null, Validators.required],
-    cityId: [null, Validators.required],
-    countryId: [null, Validators.required],
-    address: ['', Validators.required],
-    size: [null],
-    numberOfBedrooms: [null],
-    climateControl: [null],
-    capacity: [null],
-    wifi: [null],
-    kitchenTool: [null],
-    bbqTools: [null],
-    workSpace: [null],
-    closestBeachDistance: [null],
-    closestMarketDistance: [null]
-    
-  });
+
+  apartmentDetailGroup: FormGroup;
+  
   constructor(
     public formBuilder: FormBuilder,
+    private router: Router,
+    private uploadService: UploadService,
     private apartmentGroupService: ApartmentDetailService,
     private adminApartmentGroupService: AdminApartmentGroupService,
     private apartmentService: AdminApartmentService,
     private cityService: CityService,
     private countryService: CountryService,
+    private location: Location,
     private authService: AuthService
   )
     
-    {}
+    {
+    
+    }
 
   ngOnInit() {
+    this.apartmentDetailGroup= this.formBuilder.group({
+      name: ['', Validators.required],
+      description: [''],
+      userId: [null],
+      apartmentTypeId: [null, Validators.required],
+      apartmentGroupId: [null, Validators.required],
+      cityId: [null, Validators.required],
+      countryId: [null, Validators.required],
+      address: ['', Validators.required],
+      size: [null],
+      numberOfBedrooms: [null],
+      climateControl: [false],
+      capacity: [null],
+      wifi: [false],
+      kitchenTool: [false],
+      bbqTools: [false],
+      workSpace: [false],
+      sportTool: [false],
+      closestBeachDistance: [null],
+      closestMarketDistance: [null],
+      // pricingPeriodDetails: this.formBuilder.array([
+      //   this.addPricingPeriodDetailsFormGroup()
+      // ])
+      
+    });
     this.getApartmentTypes();
     this.getApartmentGroups();
     this.getCities();
@@ -80,6 +101,39 @@ export class AddAdminApartmentFormComponent implements OnInit {
       });
       
 
+    }
+  }
+
+
+  addPricingPeriodDetailsFormGroup(): FormGroup {
+    return this.formBuilder.group({
+      dateFrom: ['', Validators.required],
+      dateTo: ['', Validators.required],
+      price: [null, Validators.required]
+    });
+  }
+
+
+  createPricingPeriodDetails(): FormGroup {
+    return this.formBuilder.group({
+      dateTo: '',
+      dateFrom: '',
+      price: ''
+    })
+  }
+
+
+  saveApartment()  {
+    if(!this.apartmentDetailGroup.valid) {
+      console.log('nije valid');
+      
+      return;
+    } else {
+      console.log('valid je');
+      
+      this.apartmentService.saveApartment(this.apartmentDetailGroup.value).pipe(take(1)).subscribe(data => {
+        this.location.back();
+      });
     }
   }
 
@@ -154,6 +208,78 @@ export class AddAdminApartmentFormComponent implements OnInit {
   get capacity(): AbstractControl {
     return this.apartmentDetailGroup.get('capacity');
   }
+
+  get pricingPeriodDetailsControls() {
+    return this.apartmentDetailGroup.get('pricingPeriodDetails')['controls'];
+  }
+
+  // addPricingPeriodDetail() {
+  //   let pricingPeriodDetails = this.apartmentDetailGroup.get('pricingPeriodDetails') as FormArray;
+  //   this.pricingPeriodDetailsControls.push(this.createPricingPeriodDetails());
+  // }
+
+  removePricingPeriodDetail(i: number) {
+    (<FormArray>this.apartmentDetailGroup.get('pricingPeriodDetails')).removeAt(i);
+    // this.apartmentDetailGroup.remove
+    // this.pricingPeriodDetailsControls.r
+ }
+
+ addPricingPeriodDetails(): void {
+  (<FormArray>this.apartmentDetailGroup.get('pricingPeriodDetails')).push(this.addPricingPeriodDetailsFormGroup());
+  // (<FormArray>this.apartmentDetailGroup.get('pricingPeriodDetails')).push(this.addPricingPeriodDetailsFormGroup());
+}
+
+uploadFile(file) {  
+  console.log('file: ',file);
+  
+  const formData = new FormData();  
+  formData.append('file', file.data);  
+  formData.append('apartmentId', '1');
+  file.inProgress = true;  
+  this.uploadService.upload(formData).pipe(  
+    map(event => {  
+      switch (event.type) {  
+        case HttpEventType.UploadProgress:  
+          file.progress = Math.round(event.loaded * 100 / event.total);  
+          break;  
+        case HttpEventType.Response:  
+          return event;  
+      }  
+    }),  
+    catchError((error: HttpErrorResponse) => {  
+      file.inProgress = false;  
+      return of(`${file.data.name} upload failed.`);  
+    })).subscribe((event: any) => {  
+      if (typeof (event) === 'object') {  
+        console.log(event.body);  
+      }  
+    });  
+}
+
+private uploadFiles() {  
+  this.fileUpload.nativeElement.value = '';  
+  this.files.forEach(file => {  
+    this.uploadFile(file);  
+  });  
+}
+
+onClick() {  
+  const fileUpload = this.fileUpload.nativeElement;fileUpload.onchange = () => {  
+  for (let index = 0; index < fileUpload.files.length; index++)  
+  {  
+   const file = fileUpload.files[index];  
+   this.files.push({ data: file, inProgress: false, progress: 0});  
+  }  
+    this.uploadFiles();  
+  };  
+  fileUpload.click();  
+}
+
+submit() {
+  console.log('cijela forma:', this.apartmentDetailGroup.value);
+  
+  
+}
 
   // get capacity(): AbstractControl {
   //   return this.apartmentDetailGroup.get('capacity');

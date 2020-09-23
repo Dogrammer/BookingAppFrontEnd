@@ -200,73 +200,128 @@
           </div>
           
           <div class="custom-control custom-switch col-lg-4 col-md-12 col-sm-12 mb-3">
-            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+            <input type="checkbox" class="custom-control-input" id="customSwitch1" formControlName="climateControl">
             <label class="custom-control-label" for="customSwitch1">Klimatizacija</label>
           </div>
           <div class="custom-control custom-switch col-lg-4 col-md-12 col-sm-12 mb-3">
-            <input type="checkbox" class="custom-control-input" id="customSwitch2">
+            <input type="checkbox" class="custom-control-input" id="customSwitch2" formControlName="kitchenTool">
             <label class="custom-control-label" for="customSwitch2">Kuhinjski pribor</label>
           </div>
           <div class="custom-control custom-switch col-lg-4 col-md-12 col-sm-12 mb-3">
-            <input type="checkbox" class="custom-control-input" id="customSwitch3">
+            <input type="checkbox" class="custom-control-input" id="customSwitch3" formControlName="wifi">
             <label class="custom-control-label" for="customSwitch3">Wifi</label>
           </div>
           <div class="custom-control custom-switch col-lg-4 col-md-12 col-sm-12 mb-3">
-            <input type="checkbox" class="custom-control-input" id="customSwitch4">
+            <input type="checkbox" class="custom-control-input" id="customSwitch4" formControlName="bbqTools">
             <label class="custom-control-label" for="customSwitch4">Oprema za roštilj</label>
           </div>
           <div class="custom-control custom-switch col-lg-4 col-md-12 col-sm-12 mb-3">
-            <input type="checkbox" class="custom-control-input" id="customSwitch5">
+            <input type="checkbox" class="custom-control-input" id="customSwitch5" formControlName="workSpace">
             <label class="custom-control-label" for="customSwitch5">Mjesto za rad</label>
           </div>
           <div class="custom-control custom-switch col-lg-4 col-md-12 col-sm-12 mb-3">
-            <input type="checkbox" class="custom-control-input" id="customSwitch6">
-            <label class="custom-control-label" for="customSwitch6">Wifi</label>
+            <input type="checkbox" class="custom-control-input" id="customSwitch6" formControlName="sportTool">
+            <label class="custom-control-label" for="customSwitch6">Sportska oprema</label>
           </div>
-
-          
-                      <!-- <label class="switch" style="padding:1.75%;">
-                        <input type="checkbox" [checked]="true" disabled>
-                        <span class="slider round"></span>
-                      </label> -->
-                   
-            
-          
-          
-          
-          
         </div>
         <div class="mt-2 mb-3 border-top"></div>
       </div>
 
       
+<!-- form array dio  -->
 
+<!-- <div class="form-group">
+  
+</div>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+    <h4 class="text-primary">Cijene apartmana <span class="text-danger">*</span></h4>
+  </div> -->
+  
+
+  <!-- periodi placanja formarray -->
+  <!-- <div class="header2">
+    <h4 class="text-black">Dodaj period plaćanja</h4>
+    <button class="btn float-right" (click)="addPricingPeriodDetails()" ><i id="add" class="material-icons text-primary">add</i></button>
+  </div>
+</div>
+<br>
+
+<div formArrayName="pricingPeriodDetails" *ngFor="let detail of pricingPeriodDetailsControls; let i = index">
+  <div [formGroupName]="i"> 
+    <div class="row mb-3">
       
+      <div class="col-3">
+        <label for="dateFrom">Datum od</label>
+        <input type="datetime-local" class="form-control" id="dateFrom" formControlName="dateFrom" placeholder="Datum od.." >
+      </div>
+      <div class="col-3">
+        <label for="dateto">Datum do</label>
+        <input type="datetime-local" class="form-control" id="dateto" formControlName="dateTo" placeholder="Datum do.." >
+      </div>
+      <div class="col-3">
+        <label for="dateto">Cijena</label>
+        <input type="number" class="form-control" id="dateto" formControlName="price" placeholder="Cijena" >
+      </div>
+      <div class="col-3 mt-4">
+      <button class="btn btn-danger" (click)= "removePricingPeriodDetail(i)">Izbriši</button>
+      </div>
+    </div>
+  </div>
+</div> -->
 
+<!-- zavrsetak perioda placanja-->
+
+
+<button type="submit" class="btn btn-secondary mb-3" (click)= "saveApartment()">Spremi</button>
       <!-- <button class="btn btn-primary" type="submit">Spremi</button> -->
-        
-    </form>
+      <!-- <mat-toolbar color="primary">  
+        <h1>  
+          ngImageUpload   
+        </h1>  
+        <button mat-button routerLink="/">Home</button>  
+        <button mat-button routerLink="/about">About</button>
+      </mat-toolbar> -->
+      
 
-    <form>
-      <div>
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
-            <h4 class="text-primary">Period plaćanja <span class="text-danger">*</span></h4>
-          </div>
-          <div class="price">
-            <button class="btn"  ><i id="add" class="material-icons text-primary">add</i></button>
-            <h5 class="text-black">Dodaj period plaćanja</h5>
-            <!-- <button class="btn float-right" (click)="addComponentNavigation()" ><i id="add" class="material-icons text-primary">add_circle_outline</i></button> -->
-          </div>
+  </form>
 
 
-          
-          
-          
-        </div>
-        <div class="mt-2 mb-3 border-top"></div>
-      </div>
-    </form>
+<!-- Upload photos -->
+  <!-- <div style="text-align:center; margin-top: 100px; "><mat-card style="margin-top:10px; width: 50%;">  
+    <mat-card-content>  
+        <ul>  
+            <li *ngFor="let file of files">  
+                <mat-progress-bar [value]="file.progress"></mat-progress-bar>  
+                <span id="file-label">  
+                      
+                </span>  
+            </li>  
+        </ul>  
+    </mat-card-content>  
+    <mat-card-actions>  
+        <button mat-button color="warn" (click)="onClick()">  
+            <mat-icon>file_upload</mat-icon>  
+            Upload  
+        </button>  
+    </mat-card-actions>  
+</mat-card><input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" /></div> -->
+
+
+<!-- 
+  <mat-toolbar color="primary">  
+    <h1>  
+      ngImageUpload   
+    </h1>  
+    <button mat-button routerLink="/">Home</button>  
+    <button mat-button routerLink="/about">About</button>
+  </mat-toolbar> -->
+
+    
+
+
+    
+
     
   
      
