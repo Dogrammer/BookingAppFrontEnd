@@ -1,1 +1,43 @@
+<!-- periodi placanja formarray -->
+<form [formGroup]="pricingPeriodDetailGroup">
+    <div class="header2">
+        <h4 class="text-black">Dodaj period plaćanja</h4>
+        <button class="btn float-right" (click)="addPricingPeriodDetails()" ><i id="add" class="material-icons text-primary">add</i></button>
+    </div>
+    
+    
+    
+    <div class="row">
+        <div formArrayName="pricingPeriodDetails" *ngFor="let detail of pricingPeriodDetailsControls; let i = index">
+            <div [formGroupName]="i"> 
+              <div class="row mb-3">
+                <div class="col-2">
+                  <label for="name">Naziv</label>
+                  <input type="text" class="form-control" id="name" formControlName="name" placeholder="predsezona.." >
+                </div>
+                <div class="col-2">
+                  <label for="dateFrom">Datum od</label>
+                  <input type="datetime-local" class="form-control" id="dateFrom" formControlName="dateFrom" placeholder="Datum od.." >
+                </div>
+                <div class="col-2">
+                  <label for="dateto">Datum do</label>
+                  <input type="datetime-local" class="form-control" id="dateto" formControlName="dateTo" placeholder="Datum do.." >
+                </div>
+                <div class="col-2">
+                  <label for="dateto">Cijena</label>
+                  <input type="number" class="form-control" id="dateto" formControlName="price" placeholder="Cijena" >
+                </div>
+                <div class="col-2 mt-4">
+                <button class="btn btn-danger" (click)= "removePricingPeriodDetail(i)">Izbriši</button>   
+                </div>
+              </div>
+            </div>
+          </div>
+          
+    </div>
+    <button id="button-save" class="btn btn-outline-primary" (click)="savePricingPeriodDetails()">Spremi</button>
+    
+</form>  
 
+
+<!-- zavrsetak perioda placanja-->

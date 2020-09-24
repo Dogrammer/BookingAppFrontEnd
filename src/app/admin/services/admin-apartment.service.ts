@@ -4,6 +4,7 @@ import { IApartment } from 'src/app/apartment/models/apartment';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { IPricingPeriodDetail } from '../models/pricingPeriodDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,26 @@ export class AdminApartmentService {
 
   private readonly APARTMENT_CONTROLER = 'Apartment';
   private readonly APARTMENT_TYPE_CONTROLER = 'ApartmentType';
+  private readonly PRICING_PERIOD_DETAIL_CONTROLLER = 'PricingPeriodDetail';
 
   getApartmentById(id): Observable<IApartment[]> {
     return this.http.get<IApartment[]>(environment.apiUrl + this.APARTMENT_CONTROLER + '/getApartmentByApartmentGroupIdForAdmins/' + id).pipe(
+      map( data => {
+        return data
+      })
+    );
+  }
+
+  getPricingPeriodDetailsByApartmentId(id): Observable<IPricingPeriodDetail[]> {
+    return this.http.get<IPricingPeriodDetail[]>(environment.apiUrl + this.PRICING_PERIOD_DETAIL_CONTROLLER + '/getPricingPeriodDetailsForApartment/' + id).pipe(
+      map( data => {
+        return data
+      })
+    );
+  }
+
+  getImagesByApartmentId(id) {
+    return this.http.get(environment.apiUrl + this.APARTMENT_CONTROLER + '/getImagesForApartment/' + id).pipe(
       map( data => {
         return data
       })
@@ -64,6 +82,23 @@ export class AdminApartmentService {
     console.log('usao u servis: ',request);
     
     return this.http.post(environment.apiUrl + this.APARTMENT_CONTROLER + '/apartments', request).pipe(
+      map( data => {
+        return data
+      })
+    );
+  }
+
+  savePricingPeriodDetails(pricingPeriodDetailsData, apartmentId) {
+    console.log('details', pricingPeriodDetailsData);
+    
+    const request = {
+      'apartmentId': apartmentId,
+      'pricingPeriodDetails': pricingPeriodDetailsData.pricingPeriodDetails
+    }
+
+    console.log(request);
+    
+    return this.http.post(environment.apiUrl + this.PRICING_PERIOD_DETAIL_CONTROLLER + '/pricingPeriodDetails', request).pipe(
       map( data => {
         return data
       })
