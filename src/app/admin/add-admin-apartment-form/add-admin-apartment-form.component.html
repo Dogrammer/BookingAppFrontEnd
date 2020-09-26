@@ -2,7 +2,7 @@
 
     <div class="header">
       <i id="ic" class="material-icons text-primary">house</i>
-      <h2 class="text-black">New apartment</h2>
+      <h2 class="text-black">Dodaj/Uredi apartman</h2>
       <!-- <button class="btn float-right" (click)="addComponentNavigation()" ><i id="add" class="material-icons text-primary">add_circle_outline</i></button> -->
     </div>
 
@@ -17,7 +17,7 @@
           <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
             <label for="firstName" class="required">Naziv</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Naziv apartmana"
-            formControlName="name" [readonly]="row && row.IsNiasUser"
+            formControlName="name" 
               [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched || myform.submitted)}"
               autocomplete="off">
             <div class="invalid-feedback">Polje je obavezno</div>
@@ -25,7 +25,7 @@
           <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
             <label for="description" class="required">Kratki opis</label>
             <input type="text" class="form-control" id="description" name="description" placeholder="Kratki opis apartmana"
-            formControlName="description" [readonly]="row && row.IsNiasUser"
+            formControlName="description" 
               [ngClass]="{'is-invalid': description.invalid && (description.dirty || description.touched || myform.submitted)}"
               autocomplete="off">
             <div class="invalid-feedback">Polje je obavezno</div>
@@ -49,7 +49,7 @@
           <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
             <label for="size" class="required">Veličina</label>
             <input type="number" class="form-control" id="size" name="size" placeholder="Veličina u kvadratima"
-            formControlName="size" [readonly]="row && row.IsNiasUser"
+            formControlName="size" 
               [ngClass]="{'is-invalid': size.invalid && (size.dirty || size.touched || myform.submitted)}"
               autocomplete="off">
             <div class="invalid-feedback">Polje je obavezno</div>
@@ -57,7 +57,7 @@
           <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
             <label for="numberOfBedrooms" class="required">Broj spavaćih soba</label>
             <input type="number" class="form-control" id="numberOfBedrooms" name="numberOfBedrooms" placeholder="Broj spavaćih soba"
-            formControlName="numberOfBedrooms" [readonly]="row && row.IsNiasUser"
+            formControlName="numberOfBedrooms" 
               [ngClass]="{'is-invalid': numberOfBedrooms.invalid && (numberOfBedrooms.dirty || numberOfBedrooms.touched || myform.submitted)}"
               autocomplete="off">
             <div class="invalid-feedback">Polje je obavezno</div>
@@ -76,7 +76,7 @@
           <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
             <label for="address" class="required">Adresa apartmana</label>
             <input type="text" class="form-control" id="address" name="address" placeholder="Adresa apartmana"
-            formControlName="address" [readonly]="row && row.IsNiasUser"
+            formControlName="address"
               [ngClass]="{'is-invalid': address.invalid && (address.dirty || address.touched || myform.submitted)}"
               autocomplete="off">
             <div class="invalid-feedback">Polje je obavezno</div>
@@ -177,7 +177,7 @@
           <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
             <label for="capacity" class="required">Kapacitet</label>
             <input type="number" class="form-control" id="capacity" name="capacity" placeholder="Broj osoba.."
-            formControlName="capacity" [readonly]="row && row.IsNiasUser"
+            formControlName="capacity"
               [ngClass]="{'is-invalid': capacity.invalid && (capacity.dirty || capacity.touched || myform.submitted)}"
               autocomplete="off">
             <div class="invalid-feedback">Polje je obavezno</div>
@@ -185,7 +185,7 @@
           <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
             <label for="closestBeachDistance" class="required">Najbliža plaža</label>
             <input type="number" class="form-control" id="closestBeachDistance" name="closestBeachDistance" placeholder="Udaljenost plaže od apartmana.."
-            formControlName="closestBeachDistance" [readonly]="row && row.IsNiasUser"
+            formControlName="closestBeachDistance"
               [ngClass]="{'is-invalid': closestBeachDistance.invalid && (closestBeachDistance.dirty || closestBeachDistance.touched || myform.submitted)}"
               autocomplete="off">
             <div class="invalid-feedback">Polje je obavezno</div>
@@ -193,7 +193,7 @@
           <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
             <label for="closestMarketDistance" class="required">Najbliža trgovina</label>
             <input type="number" class="form-control" id="closestMarketDistance" name="closestMarketDistance" placeholder="Udaljenost trgovine od apartmana.."
-            formControlName="closestMarketDistance" [readonly]="row && row.IsNiasUser"
+            formControlName="closestMarketDistance"
               [ngClass]="{'is-invalid': closestMarketDistance.invalid && (closestMarketDistance.dirty || closestMarketDistance.touched || myform.submitted)}"
               autocomplete="off">
             <div class="invalid-feedback">Polje je obavezno</div>
@@ -273,7 +273,8 @@
 <!-- zavrsetak perioda placanja-->
 
 
-<button type="submit" class="btn btn-secondary mb-3" (click)= "saveApartment()">Spremi</button>
+<button *ngIf="!id" type="submit" class="btn btn-secondary mb-3" (click)= "saveApartment()">Spremi</button>
+<button *ngIf="id > 0" class="btn btn-outline-secondary mb-3" (click) = "editApartment()">Uredi</button>
       <!-- <button class="btn btn-primary" type="submit">Spremi</button> -->
       <!-- <mat-toolbar color="primary">  
         <h1>  

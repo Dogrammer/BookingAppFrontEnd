@@ -69,9 +69,6 @@ export class AdminApartmentGroupComponent implements OnInit {
   }
 
   deleteApartmentGroup(id) {
-
-    
-    
     const modalRef = this.ngbModalService.open(ConfirmationModalComponent, { backdrop: 'static', keyboard: false });
 
     modalRef.componentInstance.title = 'Brisanje grupe apartmana';

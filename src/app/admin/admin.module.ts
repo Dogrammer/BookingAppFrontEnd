@@ -24,11 +24,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AdminPricingPeriodDetailsComponent } from './admin-pricing-period-details/admin-pricing-period-details.component';
 import { AdminApartmentImagesComponent } from './admin-apartment-images/admin-apartment-images.component';
+import { ReservationOverviewComponent } from './reservation-overview/reservation-overview.component';
 
 
 
 @NgModule({
-  declarations: [AdminHomeComponent, UploadComponent, ImageUploadComponent, AdminApartmentGroupComponent, AdminApartmentComponent, AdminApartmentDetailComponent, ModalAddOrEditApartmentGroupComponent, AddAdminApartmentFormComponent, AdminPricingPeriodDetailsComponent, AdminApartmentImagesComponent],
+  declarations: [AdminHomeComponent, UploadComponent, ImageUploadComponent, AdminApartmentGroupComponent, AdminApartmentComponent, AdminApartmentDetailComponent, ModalAddOrEditApartmentGroupComponent, AddAdminApartmentFormComponent, AdminPricingPeriodDetailsComponent, AdminApartmentImagesComponent, ReservationOverviewComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

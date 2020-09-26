@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { ElementRef, ViewChild } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { catchError, map, take } from 'rxjs/operators';
 import { ApartmentDetailService } from 'src/app/apartment/services/apartment-detail.service';
@@ -33,6 +33,8 @@ export class AddAdminApartmentFormComponent implements OnInit {
   apartmentGroups;
   countries;
   cities;
+  apartmentDetails;
+  id: number;
 
   apartmentDetailGroup: FormGroup;
   
@@ -40,6 +42,7 @@ export class AddAdminApartmentFormComponent implements OnInit {
     public formBuilder: FormBuilder,
     private router: Router,
     private uploadService: UploadService,
+    private activatedRoute: ActivatedRoute,
     private apartmentGroupService: ApartmentDetailService,
     private adminApartmentGroupService: AdminApartmentGroupService,
     private apartmentService: AdminApartmentService,
@@ -54,6 +57,37 @@ export class AddAdminApartmentFormComponent implements OnInit {
     }
 
   ngOnInit() {
+
+    this.id = +this.activatedRoute.snapshot.paramMap.get('id');
+    if (this.id && this.id > 0) {
+      this.apartmentService.getApartment(this.id).subscribe(
+        data => { 
+          this.apartmentDetailGroup.patchValue({
+            name: data.name,
+            description: data.description,
+            apartmentTypeId: data.apartmentTypeId,
+            apartmentGroupId: data.apartmentGroupId,
+            cityId: data.city.id,
+            countryId: data.city.country.id,
+            address: data.fullAddress,
+            size: data.size,
+            numberOfBedrooms: data.numberOfBedrooms,
+            climateControl: data.climateControl,
+            capacity: data.capacity,
+            wifi: data.wifi,
+            kitchenTool: data.kitchenTool,
+            bbqTools: data.bbqTools,
+            workSpace: data.workSpace,
+            sportTool: data.sportTool,
+            closestBeachDistance: data.closestBeachDistance,
+            closestMarketDistance: data.closestMarketDistance,
+      
+          })
+         }
+      )
+    }
+    
+
     this.apartmentDetailGroup= this.formBuilder.group({
       name: ['', Validators.required],
       description: [''],
@@ -137,9 +171,29 @@ export class AddAdminApartmentFormComponent implements OnInit {
     }
   }
 
+  editApartment()  {
+    if(!this.apartmentDetailGroup.valid) {
+      console.log('nije valid');
+      
+      return;
+    } else {
+      console.log('valid je');
+      
+      this.apartmentService.editApartment(this.apartmentDetailGroup.value, this.id).pipe(take(1)).subscribe(data => {
+        this.location.back();
+      });
+    }
+  }
+
   getApartmentTypes() {
     this.apartmentService.getApartmentTypes().subscribe(
       data => { this.apartmentTypes = data; console.log(this.apartmentTypes)}
+    )
+  }
+
+  getApartmentForEdit() {
+    this.apartmentService.getApartment(this.id).subscribe(
+      data => { this.apartmentDetails = data; }
     )
   }
 

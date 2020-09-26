@@ -23,18 +23,11 @@ export class AdminPricingPeriodDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log();
-    
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
-    
-  
-    
-    
     this.pricingPeriodDetailGroup = this.formBuilder.group({
       pricingPeriodDetails: this.formBuilder.array([
         this.addPricingPeriodDetailsFormGroup()
       ])
-      
     });
 
     this.adminApartmentService.getPricingPeriodDetailsByApartmentId(this.id).subscribe(
@@ -44,13 +37,6 @@ export class AdminPricingPeriodDetailsComponent implements OnInit {
           this.pricingPeriodDetailGroup.setControl('pricingPeriodDetails', this.setExistingDetails(this.pricingPeriodDetails))
         }
       })
-
-    // if (this.pricingPeriodDetails){
-    //   console.log('uso u if');
-      
-    //   this.pricingPeriodDetailGroup.setControl('pricingPeriodDetails', this.setExistingDetails(this.pricingPeriodDetails))
-    //   console.log('test', this.pricingPeriodDetails);
-      
   }
 
   
