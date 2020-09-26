@@ -1,5 +1,6 @@
 #wrapper {
     overflow-x: hidden;
+    
  }
 
  .sidebar-heading {
@@ -20,6 +21,7 @@
   -moz-transition: margin .25s ease-out;
   -o-transition: margin .25s ease-out;
   transition: margin .25s ease-out;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -77,7 +79,8 @@
 }
 
 .kurac {
-
+  opacity: 1;
+  transition: 0.3s;
 display: flex;
 flex-wrap: wrap;
 }
@@ -92,5 +95,35 @@ flex-wrap: wrap;
   margin-top: 3%;
 }
 
+.dropdown-container {
+  display: block;
+  padding-left: 8px;
+}
+
+
+
+
+.kuracD {
+  opacity: 1;
+  transition: 0.3s;
+  display: flex;
+  flex-wrap: wrap;
+  }
+  
+  .kuracD p {
+    
+    width: 75%;
+    margin-top: 5%;
+  }
+  
+  .kuracD i {
+    margin-left: 20px;
+    width: 15%;
+    margin-top: 3%;
+  }
+
+  .sidebar-wrapper {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 
 

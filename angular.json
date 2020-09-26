@@ -33,7 +33,9 @@
               "node_modules/ngx-toastr/toastr.css"
               
             ],
-            "scripts": []
+            "scripts": [
+              "/../src/assets/dropdownCRUD.js"
+            ]
           },
           "configurations": {
             "production": {

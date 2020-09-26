@@ -25,11 +25,19 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AdminPricingPeriodDetailsComponent } from './admin-pricing-period-details/admin-pricing-period-details.component';
 import { AdminApartmentImagesComponent } from './admin-apartment-images/admin-apartment-images.component';
 import { ReservationOverviewComponent } from './reservation-overview/reservation-overview.component';
+import { CityComponent } from './basic-crud/city/city.component';
+import { CountryComponent } from './basic-crud/country/country.component';
+import { UsersComponent } from './basic-crud/users/users.component';
+import { ModalAoeCityComponent } from './basic-crud/modals/modal-aoe-city/modal-aoe-city.component';
+import { ModalAoeCountryComponent } from './basic-crud/modals/modal-aoe-country/modal-aoe-country.component';
+import { ModalAoeUsersComponent } from './basic-crud/modals/modal-aoe-users/modal-aoe-users.component';
+import { ModalAoeApartmentTypeComponent } from './basic-crud/modals/modal-aoe-apartment-type/modal-aoe-apartment-type.component';
+import { ApartmentTypeComponent } from './basic-crud/apartment-type/apartment-type.component';
 
 
 
 @NgModule({
-  declarations: [AdminHomeComponent, UploadComponent, ImageUploadComponent, AdminApartmentGroupComponent, AdminApartmentComponent, AdminApartmentDetailComponent, ModalAddOrEditApartmentGroupComponent, AddAdminApartmentFormComponent, AdminPricingPeriodDetailsComponent, AdminApartmentImagesComponent, ReservationOverviewComponent],
+  declarations: [AdminHomeComponent, UploadComponent, ImageUploadComponent, AdminApartmentGroupComponent, AdminApartmentComponent, AdminApartmentDetailComponent, ModalAddOrEditApartmentGroupComponent, AddAdminApartmentFormComponent, AdminPricingPeriodDetailsComponent, AdminApartmentImagesComponent, ReservationOverviewComponent, CityComponent, CountryComponent, UsersComponent, ModalAoeCityComponent, ModalAoeCountryComponent, ModalAoeUsersComponent, ModalAoeApartmentTypeComponent, ApartmentTypeComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

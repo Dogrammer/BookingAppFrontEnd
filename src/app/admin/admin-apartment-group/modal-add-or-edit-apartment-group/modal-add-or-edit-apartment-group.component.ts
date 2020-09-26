@@ -23,7 +23,7 @@ export class ModalAddOrEditApartmentGroupComponent implements OnInit {
   apartmentGroupGroup: FormGroup = this.formBuilder.group({
     name: ['', Validators.required],
     description: [''],
-    userId: [null],
+    userId: [0],
     // userName: ['', Validators.required]
     // isActive: [true],
     // activeFrom: [ new Date()],
@@ -77,6 +77,8 @@ export class ModalAddOrEditApartmentGroupComponent implements OnInit {
     if(!this.apartmentGroupGroup.valid) {
       return;
     } else {
+      console.log('validna forma');
+      
       this.apartmentGroupService.saveApartmentGroup(this.apartmentGroupGroup.value).pipe(take(1)).subscribe(data => {
         this.modal.close('add')
       });

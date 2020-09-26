@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { 
-  AuthGuardService as AuthGuard 
+  AuthGuardService as AuthGuard, AuthGuardService 
 } from '../auth/services/auth-guard.service';
 import { UploadComponent } from './upload/upload.component';
 import { AdminApartmentDetailComponent } from './admin-apartment-detail/admin-apartment-detail.component';
@@ -12,6 +12,11 @@ import { componentFactoryName } from '@angular/compiler';
 import { AddAdminApartmentFormComponent } from './add-admin-apartment-form/add-admin-apartment-form.component';
 import { AdminPricingPeriodDetailsComponent } from './admin-pricing-period-details/admin-pricing-period-details.component';
 import { AdminApartmentImagesComponent } from './admin-apartment-images/admin-apartment-images.component';
+import { ReservationOverviewComponent } from './reservation-overview/reservation-overview.component';
+import { CityComponent } from './basic-crud/city/city.component';
+import { CountryComponent } from './basic-crud/country/country.component';
+import { UsersComponent } from './basic-crud/users/users.component';
+import { ApartmentTypeComponent } from './basic-crud/apartment-type/apartment-type.component';
 
 
 const routes: Routes = [
@@ -26,6 +31,26 @@ const routes: Routes = [
   {
     path: 'apartment-groups', 
     component : AdminApartmentGroupComponent
+  },
+  {
+    path: 'city',
+    component: CityComponent,
+    canActivate: [AuthGuardService], data: {roles: ['Admin']}
+  },
+  {
+    path: 'country',
+    component: CountryComponent,
+    canActivate: [AuthGuardService], data: {roles: ['Admin']}
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
+    canActivate: [AuthGuardService], data: {roles: ['Admin']}
+  },
+  {
+    path: 'apartment-types',
+    component: ApartmentTypeComponent,
+    canActivate: [AuthGuardService], data: {roles: ['Admin']}
   },
   {
     path: 'apartment-group/:id', 
@@ -54,7 +79,11 @@ const routes: Routes = [
   
   { 
     path: '',   redirectTo: 'home', pathMatch: 'full'
-  }
+  },
+  {
+    path: 'reservations', 
+    component: ReservationOverviewComponent
+  },
   
 ];
 

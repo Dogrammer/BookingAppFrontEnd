@@ -1,1 +1,69 @@
-<p>reservation-overview works!</p>
+<div class="container mt-3">
+    <div class="header">
+       <i id="ic" class="material-icons text-primary">today</i>
+       <h2 class="text-black">Rezervacije</h2>
+       <button class="btn float-right"><i id="add" class="material-icons text-primary">add_circle_outline</i></button>
+    </div>
+     
+     
+   
+  
+ 
+     <!-- <div *ngFor="let group of apartmentGroups" class="card mt-3">
+         <div class="card-header">
+           <a type="button" (click)="navigateToDetails(group.id)">{{group.name}}</a>
+         </div>
+         <div class="card-body">
+           <div *ngIf="group.image; then thenBlock else elseBlock"></div>
+           <ng-template #thenBlock><img src="../../../assets/apartmentgroup/img1.jpg" alt=""></ng-template>
+           <ng-template #elseBlock><img src="../../../assets/apartmentgroup/no-image.png" alt=""></ng-template>
+           <p class="card-text">{{group.description}}.</p>
+         </div>
+       </div>  -->
+ 
+       <table class="table table-striped table-light">
+         <thead>
+           <tr>
+             
+             <th scope="col">Naziv</th>
+             <th scope="col">Apartman</th>
+             <th scope="col">Datum od</th>
+             <th scope="col">Datum do</th>
+             <th scope="col">Korisnik</th>
+             <th  scope="col">Status</th>
+
+
+             <th style="text-align: center;" colspan="3" scope="col">Action</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr *ngFor="let item of reservations">
+             
+             <!-- <td><button class="btn" (click)="navigateToDetails(item.id)" ><i class="edit-icon material-icons text-info">zoom_in</i></button></td> -->
+             <td>{{item.name}}</td>
+             <td>{{item.apartment.name}}</td>
+             <td>{{item.dateFrom | date: 'dd.MM.yyyy.'}}</td>
+             <td>{{item.dateTo | date: 'dd.MM.yyyy.'}}</td>
+             <td>{{item.user.userName}}</td>
+             <td>{{item.reservationStatus.name}}</td>
+
+
+             <!-- <td>{{item.apa}}</td> -->
+
+             <td><button [disabled] = "item.reservationStatus.id == 5 " class="btn btn-outline-success " (click) = "acceptReservation(item.id)">Prihvati</button></td>
+             <td><button [disabled] = "item.reservationStatus.id == 6 " class="btn btn-outline-warning" (click) = "rejectReservation(item.id)">Odbij</button></td>
+
+             <td><button class="btn" (click)="deleteReservation(item.id)" ><i class="edit-icon material-icons text-danger">delete_forever</i></button></td>
+ 
+ 
+ 
+           </tr>
+           
+         </tbody>
+       </table>
+ 
+       
+ </div>
+ 
+       
+       

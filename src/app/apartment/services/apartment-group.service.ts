@@ -23,6 +23,8 @@ export class ApartmentGroupService {
   }
 
   saveApartmentGroup(apartmentGroupData) {
+    console.log(apartmentGroupData);
+    
     return this.http.post(environment.apiUrl + this.CONTROLER_NAME + '/apartmentGroups', apartmentGroupData).pipe(
       map( data => {
         return data

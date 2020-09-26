@@ -1,4 +1,21 @@
 <!-- <app-site-navbar></app-site-navbar> -->
+<script>
+  var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+    
+    for (i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      });
+    }
+</script>
+
 <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
@@ -20,13 +37,47 @@
 
         <a href="" routerLink="apartment-groups" class="kurac list-group-item list-group-item-action bg-light">
           <i style="font-size: 24px;" class="material-icons">deck</i>
-          <p>Apartment grupa</p>
+          <p>Apartmani</p>
         </a>
 
-        <a href="" class="kurac list-group-item list-group-item-action bg-light">
-          <i style="font-size: 24px;" class="material-icons">house</i>
-          <p>Apartment kurac</p>
+        <a href="" routerLink="reservations" class="kurac list-group-item list-group-item-action bg-light">
+          <i style="font-size: 24px;" class="material-icons">today</i>
+          <p>Rezervacije</p>
         </a>
+
+        <a  class="kurac list-group-item list-group-item-action bg-light" (click)="clickEvent()">
+          <p>Osnovni podaci</p>
+          <i *ngIf="!osnovniPodaciExpand" style="font-size: 24px;" class="material-icons">expand_more</i>
+          <i *ngIf="osnovniPodaciExpand" style="font-size: 24px;" class="material-icons">keyboard_arrow_up</i>
+
+          <!-- <p>CRUD</p> -->
+        </a>
+
+        <div *ngIf="osnovniPodaciExpand" [@inOutAnimation]>
+          <a href="" routerLink="city" class="kuracD list-group-item list-group-item-action bg-light">
+            <i style="font-size: 24px;" class="material-icons">location_city</i>
+            <p>Grad</p>
+          </a>
+
+          <a href="" routerLink="country" class="kuracD list-group-item list-group-item-action bg-light">
+            <i style="font-size: 24px;" class="material-icons">public</i>
+            <p>Država</p>
+          </a>
+
+          <a href="" routerLink="users" class="kuracD list-group-item list-group-item-action bg-light">
+            <i style="font-size: 24px;" class="material-icons">people_outline</i>
+            <p>Korisnici</p>
+          </a>
+
+          <a href="" routerLink="apartment-types" class="kuracD list-group-item list-group-item-action bg-light">
+            <i style="font-size: 24px;" class="material-icons">hotel</i>
+            <p>Vrsta Apartmana</p>
+          </a>
+        </div>
+
+        <!-- <button class="dropdown-btn">Dropdown
+          <i class="fa fa-caret-down"></i>
+        </button> -->
         <!-- <a routerLink="apartment-groups" class="list-group-item list-group-item-action bg-light"><i class="material-icons">house</i>Apartment groups</a> -->
 
         <!-- <a routerLink="apartments" class="list-group-item list-group-item-action bg-light">Apartments</a>
