@@ -34,7 +34,7 @@
               
             ],
             "scripts": [
-              "/../src/assets/dropdownCRUD.js"
+            
             ]
           },
           "configurations": {

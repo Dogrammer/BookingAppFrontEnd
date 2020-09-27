@@ -1,1 +1,53 @@
-<p>country works!</p>
+<div class="container mt-3">
+    <div class="header">
+       <i id="ic" class="material-icons text-primary">public</i>
+       <h2 class="text-black">Države</h2>
+       <button class="btn float-right" (click)="openAddCountryModal()" ><i id="add" class="material-icons text-primary">add_circle_outline</i></button>
+    </div>
+     
+     
+   
+  
+ 
+     <!-- <div *ngFor="let group of apartmentGroups" class="card mt-3">
+         <div class="card-header">
+           <a type="button" (click)="navigateToDetails(group.id)">{{group.name}}</a>
+         </div>
+         <div class="card-body">
+           <div *ngIf="group.image; then thenBlock else elseBlock"></div>
+           <ng-template #thenBlock><img src="../../../assets/apartmentgroup/img1.jpg" alt=""></ng-template>
+           <ng-template #elseBlock><img src="../../../assets/apartmentgroup/no-image.png" alt=""></ng-template>
+           <p class="card-text">{{group.description}}.</p>
+         </div>
+       </div>  -->
+ 
+       <table class="table table-striped table-light">
+         <thead>
+           <tr>
+             <!-- <th scope="col">#</th> -->
+             <th scope="col">Name</th>
+             <!-- <th scope="col">Description</th> -->
+             <th colspan="2" style="text-align: center;" scope="col">Action</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr *ngFor="let item of countries">
+             
+             <!-- <td><button class="btn" (click)="navigateToDetails(item.id)" ><i class="edit-icon material-icons text-info">zoom_in</i></button></td> -->
+             <td>{{item.name}}</td>
+             <!-- <td>{{item.description}}</td> -->
+             <td><button class="btn" (click)="openAddCountryModal(item)" ><i class="edit-icon material-icons">edit</i></button></td>
+             <td><button class="btn" (click)="deleteCountry(item.id)" ><i class="edit-icon material-icons text-danger">delete_forever</i></button></td>
+ 
+ 
+ 
+           </tr>
+           
+         </tbody>
+       </table>
+ 
+       
+ </div>
+ 
+       
+       
