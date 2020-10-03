@@ -1,30 +1,52 @@
-<!-- <div class="slider">
+
+<div class="slider">
     <ngb-carousel *ngIf="images">
         <ng-template ngbSlide>
           <div class="picsum-img-wrapper">
-            <img [src]="images[0]" style="height: 500px; width: 100%;" alt="Random first slide">
+            <img [src]="images[0]" style="height: 700px; width: 100%;" alt="Random first slide">
           </div>
-          <div class="carousel-caption">
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </div>
-        </ng-template>
-        <ng-template ngbSlide>
-          <div class="picsum-img-wrapper">
-            <img [src]="images[1]" style="height: 500px; width: 100%;" alt="Random second slide">
-          </div>
-          <div class="carousel-caption">
-            <h3>Roger Federer 1988</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <div class="carousel-caption" style="margin-bottom: 10%;">
+            <div id="container">
+              <button (click)="navigateToApartments()" class="learn-more">
+                <span class="circle" aria-hidden="true">
+                  <span class="icon arrow"></span>
+                </span>
+                <span class="button-text">Apartmani</span>
+              </button>
+            </div>
+            <!-- <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> -->
           </div>
         </ng-template>
         <ng-template ngbSlide>
           <div class="picsum-img-wrapper">
-            <img [src]="images[2]" style="height: 500px; width: 100%;" alt="Random third slide">
+            <img [src]="images[1]" style="height: 700px; width: 100%;" alt="Random second slide">
           </div>
-          <div class="carousel-caption">
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          <div class="carousel-caption" style="margin-bottom: 10%;">
+            <div id="container">
+              <button class="learn-more">
+                <span class="circle" aria-hidden="true">
+                  <span class="icon arrow"></span>
+                </span>
+                <span class="button-text">Apartmani</span>
+              </button>
+            </div>
+            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[2]" style="height: 700px; width: 100%;" alt="Random third slide">
+          </div>
+          <div class="carousel-caption" style="margin-bottom: 10%;">
+            <div id="container">
+              <button class="learn-more">
+                <span class="circle" aria-hidden="true">
+                  <span class="icon arrow"></span>
+                </span>
+                <span class="button-text">Apartmani</span>
+              </button>
+            </div>
+            <!-- <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p> -->
           </div>
         </ng-template>
       </ngb-carousel>
@@ -32,7 +54,7 @@
 <div class="reserve">
   <button type="button" style="margin-left: 40%;" class="btn btn-danger">Rezerviraj teren</button>
   <button type="button" class="btn btn-info ml-2">Igraj turnir</button>
-</div> -->
+</div>
 
 
 <!-- iznad je image slider za iskoristiti -->
@@ -61,46 +83,22 @@
     </li>
   </ul>
 </div> -->
-<div class="banner-area" id="home">
+
+
+<!-- <div class="banner-area" id="home">
   <div class="reserve">
     <form>
-      <div class="row">
-        <div class="col-4">
-          <label class="text-white" for="dateFromInput">Date from</label>
-          <input type="date" class="form-control" id="dateFromInput" placeholder="Date from">
-        </div>
-        <div class="col-4">
-          <label class="text-white" for="dateToInput">Date to</label>
-          <input type="date" class="form-control" id="dateToInput" placeholder="Date to">
-        </div>
-        <div class="col-4">
-          <label class="text-white" for="people">People</label>
-          <input type="number" class="form-control" id="people" placeholder="People">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4 mt-3">
-          <label class="text-white" for="city">City</label>
-          <input type="text" class="form-control" id="country" placeholder="City">
-        </div>
-        <div class="col-4 mt-3">
-          <label class="text-white" for="priceFrom">Price per night from</label>
-          <input type="number" class="form-control" id="priceFrom" placeholder="Price from">
-        </div>
-        <div class="col-4 mt-3">
-          <label class="text-white" for="priceTo">Price per night to</label>
-          <input type="number" class="form-control" id="priceTo" placeholder="Price to">
-        </div>
-      </div>
+      
+     
       <div class="row">
         <div class="col mt-3 text-center">
-        <button type="button" class="btn btn-outline-info">Search apartments</button>
+          <button class="btn draw-border">Pretraži apartmane</button>
 
         </div>
       </div>
     </form>
   </div>  
-</div>
+</div> -->
 
 
 

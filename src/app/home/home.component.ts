@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   
-  images = ['../../assets/homepage/pic1.jpg', '../../assets/homepage/pic2.jpg', '../../assets/homepage/pic3.jpg' ]
-  constructor() { }
+  images = ['../../assets/homepage/home1.jpg', '../../assets/homepage/home2.jpg', '../../assets/homepage/home3.jpg' ]
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  navigateToApartments(){
+    this.router.navigate(['site/apartment-groups']);
   }
 
 }

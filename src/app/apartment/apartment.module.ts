@@ -7,7 +7,7 @@ import { ApartmentComponent } from './apartment/apartment.component';
 import { ApartmentDetailComponent } from './apartment-detail/apartment-detail.component';
 import { HomeComponent } from '../home/home.component';
 import { ModalReservationComponent } from './apartment-detail/modal-reservation/modal-reservation.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -17,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ApartmentRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbCarouselModule
   ]
 })
 export class ApartmentModule { }

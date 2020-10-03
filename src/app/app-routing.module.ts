@@ -20,7 +20,10 @@ const routes: Routes = [
   {
     path: 'admin', component: AdminLayoutComponent, canActivate: [AuthGuardService], data: {roles: ['Admin', 'ApartmentManager']},
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
-  }
+  },
+  { 
+    path: '',   redirectTo: 'site', pathMatch: 'full'
+  },
  
 ];
 @NgModule({

@@ -9,6 +9,7 @@ import { ColumnMode } from '@swimlane/ngx-datatable';
 import { ConfirmationModalComponent } from 'src/app/shared/modals/confirmation-modal/confirmation-modal.component';
 import { take } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr/toastr/toastr.service';
+import { Pagination } from 'src/app/helpers/pagination';
 
 export interface DialogData {
   animal: string;
@@ -22,7 +23,11 @@ export interface DialogData {
 })
 export class AdminApartmentGroupComponent implements OnInit {
 
-  apartmentGroups: IApartmentGroup[] = [];
+  apartmentGroups: IApartmentGroup[];
+  pagination: Pagination;
+  pageNumber = 1;
+  pageSize = 5;
+
   columns: any[] = [];
 
   loadingIndicator = true;
@@ -59,13 +64,20 @@ export class AdminApartmentGroupComponent implements OnInit {
      
 
   getApartmentGroups() {
-    this.apartmentGroupService.getApartmentGroupsForAdmin().subscribe(
-      data => { this.apartmentGroups = data; console.log(this.apartmentGroups)}
-    )
+    this.apartmentGroupService.getApartmentGroupsForAdmin(this.pageNumber, this.pageSize).subscribe(
+      data => {
+         this.apartmentGroups = data.result;
+         this.pagination = data.pagination;
+        })
   }
 
   navigateToDetails(id) {
     this.router.navigate(['/admin/apartment-group/', id]);
+  }
+
+  pageChanged(event: any){
+    this.pageNumber = event.page;
+    this.getApartmentGroups();
   }
 
   deleteApartmentGroup(id) {

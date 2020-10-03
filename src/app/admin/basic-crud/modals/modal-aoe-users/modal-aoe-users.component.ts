@@ -90,17 +90,17 @@ export class ModalAoeUsersComponent implements OnInit {
   //   }
   // }
 
-  get name(): AbstractControl {
-    return this.apartmentGroupGroup.get('name');
-  }
+  // get name(): AbstractControl {
+  //   return this.apartmentGroupGroup.get('name');
+  // }
 
-  get description(): AbstractControl {
-    return this.apartmentGroupGroup.get('name');
-  }
+  // get description(): AbstractControl {
+  //   return this.apartmentGroupGroup.get('name');
+  // }
 
-  get userId(): AbstractControl {
-    return this.apartmentGroupGroup.get('userId');
-  }
+  // get userId(): AbstractControl {
+  //   return this.apartmentGroupGroup.get('userId');
+  // }
 
   // get userName(): AbstractControl {
   //   return this.apartmentGroupGroup.get('userName');

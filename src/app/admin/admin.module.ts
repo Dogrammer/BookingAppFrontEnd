@@ -33,6 +33,7 @@ import { ModalAoeCountryComponent } from './basic-crud/modals/modal-aoe-country/
 import { ModalAoeUsersComponent } from './basic-crud/modals/modal-aoe-users/modal-aoe-users.component';
 import { ModalAoeApartmentTypeComponent } from './basic-crud/modals/modal-aoe-apartment-type/modal-aoe-apartment-type.component';
 import { ApartmentTypeComponent } from './basic-crud/apartment-type/apartment-type.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 
@@ -52,8 +53,12 @@ import { ApartmentTypeComponent } from './basic-crud/apartment-type/apartment-ty
     MatFormFieldModule,
     MatDialogModule,
     NgxDatatableModule,
-    NgbModule
+    NgbModule,
+    PaginationModule.forRoot()
 
+  ],
+  exports: [
+    PaginationModule
   ]
 })
 export class AdminModule { }
