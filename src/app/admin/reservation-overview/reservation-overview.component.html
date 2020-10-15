@@ -44,14 +44,14 @@
              <td>{{item.apartment.name}}</td>
              <td>{{item.dateFrom | date: 'dd.MM.yyyy.'}}</td>
              <td>{{item.dateTo | date: 'dd.MM.yyyy.'}}</td>
-             <td>{{item.user.userName}}</td>
+             <td>{{item.user.username}}</td>
              <td>{{item.reservationStatus.name}}</td>
 
 
              <!-- <td>{{item.apa}}</td> -->
 
-             <td><button [disabled] = "item.reservationStatus.id == 5 " class="btn btn-outline-success " (click) = "acceptReservation(item.id)">Prihvati</button></td>
-             <td><button [disabled] = "item.reservationStatus.id == 6 " class="btn btn-outline-warning" (click) = "rejectReservation(item.id)">Odbij</button></td>
+             <td><button [disabled] = "item.reservationStatus.id == 4 " class="btn btn-outline-success " (click) = "acceptReservation(item.id)">Prihvati</button></td>
+             <td><button [disabled] = "item.reservationStatus.id == 5 " class="btn btn-outline-warning" (click) = "rejectReservation(item.id)">Odbij</button></td>
 
              <td><button class="btn" (click)="deleteReservation(item.id)" ><i class="edit-icon material-icons text-danger">delete_forever</i></button></td>
  
@@ -61,6 +61,19 @@
            
          </tbody>
        </table>
+
+       <div class="float-right" *ngIf="pagination">
+        <pagination 
+          [boundaryLinks]="true" 
+          [totalItems]="pagination.totalItems"
+          [itemsPerPage] = "pagination.itemsPerPage"
+          [(ngModel)]="pagination.currentPage"
+          (pageChanged)="pageChanged($event)"
+          previousText="&lsaquo;" 
+          nextText="&rsaquo;" 
+          firstText="&laquo;" 
+          lastText="&raquo;">
+        </pagination>
  
        
  </div>

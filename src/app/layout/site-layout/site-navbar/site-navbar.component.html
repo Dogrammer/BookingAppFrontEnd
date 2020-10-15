@@ -9,17 +9,15 @@
       <a href="#about">About</a>
       <div class="underline"></div>
     </li>
-    <li>
-      <a href="#portfolio">Portfolio</a>
+    <li *ngIf="!loggedIn()">
+      <a (click)="navigateToLoginPage()" routerLinkActive="router-link-active" >Log in</a>
       <div class="underline"></div>
     </li>
-    <li>
-      <a href="#services">Services</a>
+    <li *ngIf="loggedIn()">
+      <a (click)="logout()" routerLinkActive="router-link-active" >Log out</a>
       <div class="underline"></div>
     </li>
-    <li>
-      <a href="#contact">Contact</a>
-      <div class="underline"></div>
-    </li>
+    
+    
   </ul>
 </div>

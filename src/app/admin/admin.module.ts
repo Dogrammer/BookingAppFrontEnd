@@ -34,6 +34,7 @@ import { ModalAoeUsersComponent } from './basic-crud/modals/modal-aoe-users/moda
 import { ModalAoeApartmentTypeComponent } from './basic-crud/modals/modal-aoe-apartment-type/modal-aoe-apartment-type.component';
 import { ApartmentTypeComponent } from './basic-crud/apartment-type/apartment-type.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -54,6 +55,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     MatDialogModule,
     NgxDatatableModule,
     NgbModule,
+    ToastrModule,
     PaginationModule.forRoot()
 
   ],

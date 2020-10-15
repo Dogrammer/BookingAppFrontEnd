@@ -1,30 +1,69 @@
-.heading {
-    font-size: 2rem;
-    margin-top: 10%;
+
+.container {
+    // border: 1px solid black;
+    border-radius: 5px 5px 5px 5px;
+
+}
+
+.wrapper {
+    // border: 1px solid red;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    border-bottom: 0.1em solid gray;
+    height: 500px;
 }
 
-.title {
-    font-size: 2rem;
-    width: 20%;
+.gallery {
+    // border: 3px solid green;
+    width: 50%;
 }
 
-.price {
-    width: 20%;
+.details {
+    padding: 10px;
+    border: 3px solid gray;
+    border-radius: 5px 5px 5px 5px;
+    width: 50%;
 }
 
-.photo {
-    margin-top: 2%;
-    height: 250px;
-    border: 0.1em solid gray;
+.address {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.calendar {
-    margin-top: 1%;
-    height: 200px;
-    border: 1px solid gray;
-
+.address p {
+    width: 40%
 }
+
+.other {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.other p {
+    width:30%;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.features p {
+    width:30%;
+}
+
+.header1 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header1 h1 {
+    width: 90%;
+}
+
+.header1 button {
+    width: 10%;
+}
+
+
+
+

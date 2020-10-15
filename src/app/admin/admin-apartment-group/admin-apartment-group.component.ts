@@ -10,6 +10,10 @@ import { ConfirmationModalComponent } from 'src/app/shared/modals/confirmation-m
 import { take } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr/toastr/toastr.service';
 import { Pagination } from 'src/app/helpers/pagination';
+import { ApartmentGroupParams } from '../models/apartmentGroupParams';
+import { IUser } from 'src/app/auth/models/user';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
 export interface DialogData {
   animal: string;
@@ -24,9 +28,11 @@ export interface DialogData {
 export class AdminApartmentGroupComponent implements OnInit {
 
   apartmentGroups: IApartmentGroup[];
+  users: IUser[];
+  isAdmin;
+
   pagination: Pagination;
-  pageNumber = 1;
-  pageSize = 5;
+  apartmentGroupParams:  ApartmentGroupParams = new ApartmentGroupParams;
 
   columns: any[] = [];
 
@@ -35,16 +41,22 @@ export class AdminApartmentGroupComponent implements OnInit {
 
   
 
-  ColumnMode = ColumnMode;
-
+  // ColumnMode = ColumnMode;
+  apartmentGroupForm: FormGroup = this.formBuilder.group({
+    userId: [null],
+  });
 
   constructor(private apartmentGroupService: AdminApartmentGroupService, 
               public dialog: MatDialog,
               // private toastr: ToastrService,
+              private authService: AuthService,
+              private formBuilder: FormBuilder,
               private ngbModalService: NgbModal,
               private router: Router) { }
 
   ngOnInit(): void {
+    this.checkIfAdmin();
+    this.getApartmentManagers();
     this.getApartmentGroups();
     console.log(this.apartmentGroups);
     this.columns = [
@@ -62,9 +74,22 @@ export class AdminApartmentGroupComponent implements OnInit {
   
 
      
+  getApartmentManagers() {
+    this.authService.getApartmentManagers().subscribe(
+      data => { this.users = data; console.log(this.users)}
+    )
+  }
+
+  checkIfAdmin() {
+    this.authService.checkIfAdmin().subscribe(
+      data => { this.isAdmin = data; console.log(this.isAdmin)}
+    )
+  }
 
   getApartmentGroups() {
-    this.apartmentGroupService.getApartmentGroupsForAdmin(this.pageNumber, this.pageSize).subscribe(
+    console.log('params:',this.apartmentGroupParams);
+    
+    this.apartmentGroupService.getApartmentGroupsForAdminPagination(this.apartmentGroupParams, this.apartmentGroupForm.value).subscribe(
       data => {
          this.apartmentGroups = data.result;
          this.pagination = data.pagination;
@@ -76,7 +101,7 @@ export class AdminApartmentGroupComponent implements OnInit {
   }
 
   pageChanged(event: any){
-    this.pageNumber = event.page;
+    this.apartmentGroupParams.pageNumber = event.page;
     this.getApartmentGroups();
   }
 
@@ -148,6 +173,17 @@ export class AdminApartmentGroupComponent implements OnInit {
       // this.filterProgrammeType();
     }, 200)
     }).catch((res) => {});
+  }
+
+  resetFilters() {
+    // this.apartmentGroupParams = new ApartmentGroupParams;
+    // this.getApartmentGroups();
+    this.apartmentGroupForm.reset();
+    this.getApartmentGroups();
+  }
+
+  get userId(): AbstractControl {
+    return this.apartmentGroupForm.get('userId');
   }
 
 }

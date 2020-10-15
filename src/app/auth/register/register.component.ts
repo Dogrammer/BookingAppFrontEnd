@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class RegisterComponent implements OnInit {
     password: [null],
   });
   constructor(private formBuilder: FormBuilder,
+              private router: Router,
               private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -34,6 +36,10 @@ export class RegisterComponent implements OnInit {
         // });
       });
     }
+  }
+
+  navigateToLoginPage() {
+    this.router.navigate(['auth/login']);
   }
 
 }

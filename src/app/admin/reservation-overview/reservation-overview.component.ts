@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { take } from 'rxjs/operators';
+import { Pagination } from 'src/app/helpers/pagination';
 import { ConfirmationModalComponent } from 'src/app/shared/modals/confirmation-modal/confirmation-modal.component';
 import { IReservation } from '../models/reservation';
+import { ReservationParams } from '../models/reservationParams';
 import { ReservationService } from '../services/reservation.service';
 
 @Component({
@@ -12,13 +15,20 @@ import { ReservationService } from '../services/reservation.service';
 })
 export class ReservationOverviewComponent implements OnInit {
 
+  apartmentGroupForm: FormGroup = this.formBuilder.group({
+    // userId: [null],
+  });
+  
   constructor(private reservationService: ReservationService,
               private ngbModalService: NgbModal,
+              private formBuilder: FormBuilder
     
             
     ) { }
-
+    
   reservations: IReservation[] = [];
+  pagination: Pagination;
+  reservationParams:  ReservationParams = new ReservationParams;
   columns: any[] = [];
 
   ngOnInit(): void {
@@ -35,8 +45,10 @@ export class ReservationOverviewComponent implements OnInit {
   }
 
   getReservations() {
-    this.reservationService.getReservations().subscribe(
-      data => { this.reservations = data; console.log('reservations', this.reservations);
+    this.reservationService.getReservationsORG(this.reservationParams, this.apartmentGroupForm.value).subscribe(
+      data => { 
+        this.reservations = data.result;
+        this.pagination = data.pagination;
        }
     )
   }
@@ -84,6 +96,11 @@ export class ReservationOverviewComponent implements OnInit {
       }
       // u slucaju da trebamo neki handle
     }).catch((res) => { });
+  }
+
+  pageChanged(event: any){
+    this.reservationParams.pageNumber = event.page;
+    this.getReservations();
   }
 
 }

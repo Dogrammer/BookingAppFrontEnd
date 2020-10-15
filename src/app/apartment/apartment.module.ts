@@ -9,6 +9,9 @@ import { HomeComponent } from '../home/home.component';
 import { ModalReservationComponent } from './apartment-detail/modal-reservation/modal-reservation.component';
 import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// For MDB Angular Free
+import { CarouselModule, ModalModule, WavesModule } from 'angular-bootstrap-md'
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ApartmentRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    NgxSpinnerModule
+    
+
   ]
 })
 export class ApartmentModule { }

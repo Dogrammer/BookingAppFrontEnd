@@ -15,6 +15,7 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
   decodedToken: any;
   currentUser: IUser;
+  currentUsername: string;
   // photoUrl = new BehaviorSubject<string>('../../assets/user.png');
   // currentPhotoUrl = this.photoUrl.asObservable();
 
@@ -49,10 +50,22 @@ export class AuthService {
             localStorage.setItem('token', user.token);
             // localStorage.setItem('user', JSON.stringify(user.user));
             this.decodedToken = this.jwtHelper.decodeToken(user.token);
-            // this.currentUser = user.user;
+            console.log(this.decodedToken);
+            console.log(this.decodedToken.Username);
+            
+            this.currentUsername = this.decodedToken.Username;
+            // this.currentUser.username = this.decodedToken.Username;
           }
         })
       );
+  }
+
+  logout() {
+    return this.http.get(environment.apiUrl + this.CONTROLER_NAME + '/logout').pipe(
+      map( data => {
+        return data
+      })
+    );
   }
 
   // loggedIn() {

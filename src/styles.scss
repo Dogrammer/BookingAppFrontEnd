@@ -70,3 +70,92 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       // }
   // }
   // }
+  #toast-container > .toast-success {
+    color: black;
+  }
+
+  #toast-container > .toast-error {
+    color: black;
+  }
+
+  #toast-container > .toast-info {
+    color: black;
+  }
+
+  #toast-container > .toast-warning {
+    color: black;
+  }
+  .toast-container {
+    .toast {
+        border-radius: 10px;
+        color: black ; 
+        // opacity: 1 !important;
+    }
+    .toast-close-button {
+        position: absolute;
+        color:  gray -400;
+        top: -1px;
+        right: 8px;
+    }
+    .toast-progress {
+        height: 2px;
+        opacity: 1;
+    }
+
+    .toast-success {
+        color: black;
+        background-color: white;
+        box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 green;
+        // background-image: url('../../images/checkmark.svg');
+        background-image: url('./assets/toaster-images/checkmark.svg');
+
+        .toast-progress {
+            background: green;
+        }
+        &:hover {
+            box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 green;
+        }
+    }
+    .toast-warning {
+        background-color: white;
+        box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 orange;
+        // background-image: url('../../images/danger.svg');
+        background-image: url('./assets/toaster-images/danger.svg');
+
+        
+
+        .toast-progress {
+            background: orange;
+        }
+        &:hover {
+            box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 orange;
+        }
+    }
+    .toast-info {
+        background-color: white;
+        box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 lightblue;
+        background-image: url('./assets/toaster-images/info.svg');
+
+        .toast-progress {
+            background: lightblue;
+        }
+        &:hover {
+            box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 lightblue;
+        }
+    }
+    .toast-error {
+        background-color: white;
+        box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 red;
+        // background-image: url('../../images/close.svg');
+        background-image: url('./assets/toaster-images/close.svg');
+        .toast-progress {
+            background: red;
+        }
+        &:hover {
+            box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 red;
+        }
+    }
+}
+.toast-top-right {
+    right: 30px;
+}

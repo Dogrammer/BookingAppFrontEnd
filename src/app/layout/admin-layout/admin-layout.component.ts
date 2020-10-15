@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { Router } from '@angular/router';
 
 // declare function dropdownMethod(): any;
 
@@ -32,13 +34,41 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
+  currentUser: string;
+  items: string[] = [
+    'The first choice!',
+    'And another choice for you.',
+    'but wait! A third!'
+  ];
 
   osnovniPodaciExpand: boolean = false;
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.currentUsername;
+    // console.log('currentUser=', this.authService.currentUsername);
     
     // dropdownMethod();
+  }
+
+  loggedIn() {
+    if (this.authService.isAuthenticated()){
+      return true;
+    }
+    return false;
+  }
+
+  logout() {
+    this.authService.logout().subscribe( response => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      this.authService.decodedToken = null;
+      this.authService.currentUser = null;
+      this.router.navigate(['site/home']);
+    })
   }
 
   clickEvent(){
@@ -51,6 +81,18 @@ export class AdminLayoutComponent implements OnInit {
     }
     console.log(this.osnovniPodaciExpand);
     
+  }
+
+
+
+  onHidden(): void {
+    console.log('Dropdown is hidden');
+  }
+  onShown(): void {
+    console.log('Dropdown is shown');
+  }
+  isOpenChange(): void {
+    console.log('Dropdown state is changed');
   }
 
 

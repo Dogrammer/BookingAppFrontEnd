@@ -4,6 +4,23 @@
       <h2 class="text-black">Apartment Groups</h2>
       <button class="btn float-right" (click)="openAddApartmentGroupModal()" ><i id="add" class="material-icons text-primary">add_circle_outline</i></button>
    </div>
+   <div *ngIf="isAdmin === true" class="mt-3">
+     <form [formGroup]="apartmentGroupForm"  #form="ngForm" class="form-inline mb-3" (ngSubmit)="getApartmentGroups()" autocomplete="off">
+       
+       <div class="col-sm-3 col-md-3 col-lg-3 mb-3">
+        <label id="users" for="users" class="required">Korisnik</label>
+        <ng-select [items]="users" bindLabel="userName" bindValue="id" labelForId="state" placeholder="Izaberi..."
+          clearAllText="Clear" formControlName="userId"
+          >
+        </ng-select>
+        <div class="invalid-feedback">Polje je obavezno</div>
+      </div>
+      <button type="submit" class="btn btn-outline-primary">Filtriraj</button>
+      <button type="submit" class="btn btn-outline-secondary ml-2" (click)="resetFilters()">Ukloni filter</button>
+
+     </form>
+   </div>
+
     
     
   
@@ -27,7 +44,8 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
-            <th scope="col">Action</th>
+            <th scope="col">Menadžer</th>
+            <th colspan="2" scope="col">Akcije</th>
           </tr>
         </thead>
         <tbody>
@@ -36,6 +54,7 @@
             <td><button class="btn" (click)="navigateToDetails(item.id)" ><i class="edit-icon material-icons text-info">zoom_in</i></button></td>
             <td>{{item.name}}</td>
             <td>{{item.description}}</td>
+            <td>{{item.user.userName}}</td>
             <td><button class="btn" (click)="openAddApartmentGroupModal(item)" ><i class="edit-icon material-icons">edit</i></button></td>
             <td><button class="btn" (click)="deleteApartmentGroup(item.id)" ><i class="edit-icon material-icons text-danger">delete_forever</i></button></td>
 

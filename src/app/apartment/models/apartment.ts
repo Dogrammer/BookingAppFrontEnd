@@ -1,4 +1,6 @@
+import { IApartmentType } from 'src/app/admin/models/apartment-types';
 import { ICity } from 'src/app/admin/models/city';
+import { IApartmentGroup } from './apartment-group';
 
 export interface IApartment {
     id: number;
@@ -8,6 +10,8 @@ export interface IApartment {
     capacity: number;
     images: Array<string>;
     apartmentTypeId: number;
+    apartmentType: IApartmentType;
+    apartmentGroup: IApartmentGroup;
     apartmentGroupId: number;
     cityId: number;
     city: ICity;

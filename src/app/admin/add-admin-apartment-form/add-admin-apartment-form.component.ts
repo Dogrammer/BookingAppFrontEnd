@@ -13,6 +13,7 @@ import { CityService } from '../services/city.service';
 import { CountryService } from '../services/country.service';
 import { UploadService } from '../services/upload.service';
 import {Location} from '@angular/common';
+import { ApartmentGroupParams } from '../models/apartmentGroupParams';
 
 @Component({
   selector: 'app-add-admin-apartment-form',
@@ -35,6 +36,7 @@ export class AddAdminApartmentFormComponent implements OnInit {
   cities;
   apartmentDetails;
   id: number;
+  apartmentGroupParams: ApartmentGroupParams;
 
   apartmentDetailGroup: FormGroup;
   
@@ -210,7 +212,7 @@ export class AddAdminApartmentFormComponent implements OnInit {
   }
 
   getApartmentGroups() {
-    this.adminApartmentGroupService.getApartmentGroupsForAdmin().subscribe(
+    this.adminApartmentGroupService.getApartmentGroupForAdmin().subscribe(
       data => { this.apartmentGroups = data; console.log(this.apartmentGroups)}
     )
   }

@@ -25,7 +25,11 @@ import { AuthGuardService } from './auth/services/auth-guard.service';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './services/http.interceptor';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ToastrModule } from 'ngx-toastr/toastr/toastr.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+// For MDB Angular Free
+import {CarouselModule, ModalModule, WavesModule } from 'angular-bootstrap-md'
+import { NgxSpinnerModule } from 'ngx-spinner';
 // import { ToastrModule } from 'ngx-toastr/toastr/toastr.module';
 
 export function tokenGetter() {
@@ -58,7 +62,10 @@ export function jwtOptionsFactory() {
     NgImageSliderModule,
     NgbModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({timeOut: 7000, positionClass: 'toast-bottom-right', preventDuplicates: false, progressAnimation: 'decreasing', progressBar: true, closeButton: true}),
     // ToastrModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
     MatToolbarModule,  
@@ -66,6 +73,9 @@ export function jwtOptionsFactory() {
     MatCardModule,  
     MatProgressBarModule,
     MatInputModule ,
+    BsDropdownModule.forRoot(),
+    NgxSpinnerModule,
+    
     MatDialogModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
@@ -82,6 +92,7 @@ export function jwtOptionsFactory() {
     //   }
     // })
   ],
+  // exports: [NgxSpinnerModule],
   providers: [AuthGuardService, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

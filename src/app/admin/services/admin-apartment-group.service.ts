@@ -5,42 +5,63 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { PaginatedResult } from 'src/app/helpers/pagination';
+import { ApartmentGroupParams } from '../models/apartmentGroupParams';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminApartmentGroupService {
 
-  paginatedResult: PaginatedResult<IApartmentGroup[]> = new PaginatedResult<IApartmentGroup[]>();
+  
 
   constructor(private http: HttpClient) { }
 
   private readonly CONTROLER_NAME = 'ApartmentGroup';
 
-  getApartmentGroupsForAdmin(page?: number, itemsPerPage?: number ) {
-    let params = new HttpParams();
-
-    if (page !== null && itemsPerPage !== null) {
-      console.log('page=',page);
-      console.log('itemsPerPage=', itemsPerPage);
-      
-      
-      params = params.append('pageNumber', page.toString());
-      params = params.append('pageSize', itemsPerPage.toString());
+  getApartmentGroupsForAdminPagination(apartmentGroupParams: ApartmentGroupParams, filterData ) {
+    
+    let params = this.getPaginationHeaders(apartmentGroupParams.pageNumber, apartmentGroupParams.pageSize);
+    console.log(filterData);
+    
+    if (filterData && filterData.userId > 0) {
+      params = params.append('userId', filterData.userId.toString());
     }
-    return this.http.get<IApartmentGroup[]>(environment.apiUrl + this.CONTROLER_NAME + '/getApartmentGroupsForAdmins', {observe: 'response', params}).pipe(
-      map( response => {
-        this.paginatedResult.result = response.body;
+
+    return this.getPaginatedResults<IApartmentGroup[]>(environment.apiUrl + this.CONTROLER_NAME + '/getApartmentGroupsForAdmins', params);
+  }
+
+  private getPaginatedResults<T>(url, params) {
+
+    const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
+    return this.http.get<T>(url, { observe: 'response', params }).pipe(
+      map(response => {
+        paginatedResult.result = response.body;
         if (response.headers.get('pagination') !== null) {
-          this.paginatedResult.pagination = JSON.parse(response.headers.get('pagination'));
+          paginatedResult.pagination = JSON.parse(response.headers.get('pagination'));
         }
-        return this.paginatedResult; 
+        return paginatedResult;
       })
     );
   }
 
+  private getPaginationHeaders(pageNumber: number, pageSize: number) {
+    let params = new HttpParams();
+      params = params.append('pageNumber', pageNumber.toString());
+      params = params.append('pageSize', pageSize.toString());
+    
+    return params;
+  }
+
   saveApartmentGroup(apartmentGroupData) {
     return this.http.post(environment.apiUrl + this.CONTROLER_NAME + '/countries', apartmentGroupData).pipe(
+      map( data => {
+        return data
+      })
+    );
+  }
+
+  getApartmentGroupForAdmin(): Observable<IApartmentGroup[]> {
+    return this.http.get<IApartmentGroup[]>(environment.apiUrl + this.CONTROLER_NAME + '/getApartmentGroupsForAdmins').pipe(
       map( data => {
         return data
       })
