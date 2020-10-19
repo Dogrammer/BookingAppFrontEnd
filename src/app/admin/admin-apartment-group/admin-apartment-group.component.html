@@ -1,14 +1,14 @@
  <div class="container mt-3">
    <div class="header">
       <i id="ic" class="material-icons text-primary">deck</i>
-      <h2 class="text-black">Apartment Groups</h2>
+      <h2 class="text-black">Apartman/Grupa</h2>
       <button class="btn float-right" (click)="openAddApartmentGroupModal()" ><i id="add" class="material-icons text-primary">add_circle_outline</i></button>
    </div>
    <div *ngIf="isAdmin === true" class="mt-3">
      <form [formGroup]="apartmentGroupForm"  #form="ngForm" class="form-inline mb-3" (ngSubmit)="getApartmentGroups()" autocomplete="off">
        
        <div class="col-sm-3 col-md-3 col-lg-3 mb-3">
-        <label id="users" for="users" class="required">Korisnik</label>
+        <label id="users" for="users" class="required">Menadžer</label>
         <ng-select [items]="users" bindLabel="userName" bindValue="id" labelForId="state" placeholder="Izaberi..."
           clearAllText="Clear" formControlName="userId"
           >
@@ -42,8 +42,8 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
+            <th scope="col">Naziv</th>
+            <th scope="col">Opis</th>
             <th scope="col">Menadžer</th>
             <th colspan="2" scope="col">Akcije</th>
           </tr>

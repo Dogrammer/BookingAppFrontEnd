@@ -1,3 +1,11 @@
+.card {
+    margin: auto;
+    width: 70%;
+
+}
+.card-header {
+    background-color: rgb(1, 43, 134);
+}
 .card-body {
     display: flex;
     flex-wrap: wrap;
@@ -5,10 +13,17 @@
 }
 
 .card-body img {
-    width: 20%;
+    width: 35%;
     border-radius: 5px 5px 5px;
 }
 
 .card-text {
-    width: 65%;
+    width: 60%;
+}
+
+.filter {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 10px;
+    // border: 1px solid black;
+    border-radius: 7px 7px 7px 7px;
 }

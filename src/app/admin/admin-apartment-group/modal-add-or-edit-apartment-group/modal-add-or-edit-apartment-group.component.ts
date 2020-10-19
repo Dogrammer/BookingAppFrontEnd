@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { take } from 'rxjs/operators';
 import { ApartmentGroupService } from 'src/app/apartment/services/apartment-group.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-modal-add-or-edit-apartment-group',
@@ -24,6 +25,8 @@ export class ModalAddOrEditApartmentGroupComponent implements OnInit {
     name: ['', Validators.required],
     description: [''],
     userId: [0],
+    file: [''],
+    fileSource: ['']
     // userName: ['', Validators.required]
     // isActive: [true],
     // activeFrom: [ new Date()],
@@ -32,6 +35,7 @@ export class ModalAddOrEditApartmentGroupComponent implements OnInit {
   constructor(
     public modal: NgbActiveModal,
     public formBuilder: FormBuilder,
+    private http: HttpClient,
     private apartmentGroupService: ApartmentGroupService,
     private authService: AuthService
   )
@@ -48,6 +52,7 @@ export class ModalAddOrEditApartmentGroupComponent implements OnInit {
         name: this.row.name,
         description: this.row.description,
         userId: this.row.user.id,
+        // file: this.row.imageFilePath,
         // userName: this.row.user.userName
         // isActive: this.row.isActive,
         // activeFrom: this.row.activeFrom,
@@ -95,6 +100,47 @@ export class ModalAddOrEditApartmentGroupComponent implements OnInit {
     }
   }
 
+
+  // upload
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.apartmentGroupGroup.patchValue({
+        fileSource: file
+      });
+    }
+  }
+    
+  //upload
+  submit(){
+    const formData = new FormData();
+    formData.append('file', this.apartmentGroupGroup.get('fileSource').value);
+    formData.append('name', this.name.value);
+    formData.append('description', this.description.value);
+    formData.append('userId', this.userId.value);
+    console.log('formdata',formData);
+    
+
+    if(this.row && this.action == 'edit') {
+      this.http.put('https://localhost:5001/api/ApartmentGroup/editApartmentGroup/' + this.row.id, formData).subscribe(
+        data => {
+          //toaster uploaded successfully
+          this.modal.close('edit');
+        }
+      );
+    }
+
+    else {
+      this.http.post('https://localhost:5001/api/ApartmentGroup/addApartmentGroup', formData).subscribe(
+        data => {
+          //toaster uploaded successfully
+          this.modal.close('add');
+        }
+      );
+    }
+    
+  }
+
   get name(): AbstractControl {
     return this.apartmentGroupGroup.get('name');
   }
@@ -105,6 +151,10 @@ export class ModalAddOrEditApartmentGroupComponent implements OnInit {
 
   get userId(): AbstractControl {
     return this.apartmentGroupGroup.get('userId');
+  }
+
+  get f(){
+    return this.apartmentGroupGroup.controls;
   }
 
   // get userName(): AbstractControl {

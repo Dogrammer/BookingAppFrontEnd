@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // For MDB Angular Free
 import { CarouselModule, ModalModule, WavesModule } from 'angular-bootstrap-md'
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FormsModule,
     ReactiveFormsModule,
     NgbCarouselModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgSelectModule,
+    PaginationModule.forRoot(),
     
 
   ]

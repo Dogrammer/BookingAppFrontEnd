@@ -1,5 +1,5 @@
 <div class="navbar">
-  <a href="#" class="logo">Bookme<span style="color: rgb(37, 123, 165);;">.com</span></a>
+  <a href="#" class="logo">BOOKME-ASSISTANT</a>
   <ul class="navx">
     <li>
       <a href="#home">Home</a>
@@ -9,15 +9,7 @@
       <a href="#about">About</a>
       <div class="underline"></div>
     </li>
-    <li *ngIf="!loggedIn()">
-      <a (click)="navigateToLoginPage()" routerLinkActive="router-link-active" >Log in</a>
-      <div class="underline"></div>
-    </li>
-    <li *ngIf="loggedIn()">
-      <a (click)="logout()" routerLinkActive="router-link-active" >Log out</a>
-      <div class="underline"></div>
-    </li>
-    
-    
-  </ul>
+  </ul> 
+  <button  *ngIf="!loggedIn()" class="btn btn-outline-primary ml-2" (click)="navigateToLoginPage()">Log in</button>
+  <button *ngIf="loggedIn()" class="btn btn-outline-secondary ml-2" (click)="logout()">Log out</button>
 </div>

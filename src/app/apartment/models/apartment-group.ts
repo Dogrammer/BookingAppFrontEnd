@@ -5,5 +5,6 @@ export interface IApartmentGroup {
     name: string;
     description: string;
     user: IUser;
+    imageFilePath: string;
 
 }

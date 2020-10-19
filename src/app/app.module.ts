@@ -62,7 +62,7 @@ export function jwtOptionsFactory() {
     NgImageSliderModule,
     NgbModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({timeOut: 7000, positionClass: 'toast-bottom-right', preventDuplicates: false, progressAnimation: 'decreasing', progressBar: true, closeButton: true}),
+    ToastrModule.forRoot({timeOut: 7000, positionClass: 'toast-top-right', preventDuplicates: false, progressAnimation: 'decreasing', progressBar: true, closeButton: true}),
     // ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,

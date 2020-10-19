@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { IApartment } from 'src/app/apartment/models/apartment';
+import { IApartment, IImage } from 'src/app/apartment/models/apartment';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AdminApartmentService } from '../services/admin-apartment.service';
 import { ActivatedRoute } from '@angular/router';
@@ -15,7 +15,7 @@ export class AdminApartmentDetailComponent implements OnInit {
   id: number;
   public model: NgbDateStruct;
   apartment: IApartment;
-  images: Array<string> = [];
+  images: Array<IImage> = [];
 
   reservationFormGroup: FormGroup = this.formBuilder.group({
     dateFrom: [null,Validators.required],

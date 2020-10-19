@@ -8,7 +8,7 @@ export interface IApartment {
     description: string;
     size: number;
     capacity: number;
-    images: Array<string>;
+    images: Array<IImage>;
     apartmentTypeId: number;
     apartmentType: IApartmentType;
     apartmentGroup: IApartmentGroup;
@@ -25,4 +25,9 @@ export interface IApartment {
     sportTool: boolean;
     closestBeachDistance: number;
     closestMarketDistance: number;
+}
+
+export interface IImage {
+    name: string;
+    filePath: string;
 }

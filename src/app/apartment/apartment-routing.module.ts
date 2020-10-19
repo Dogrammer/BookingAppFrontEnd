@@ -14,8 +14,12 @@ const routes: Routes = [{
   path: 'apartment-groups',
   component: ApartmentGroupComponent
 },
+// {
+//   path: 'apartment-group/:id',
+//   component: ApartmentComponent
+// },
 {
-  path: 'apartment-group/:id',
+  path: 'apartments',
   component: ApartmentComponent
 },
 {

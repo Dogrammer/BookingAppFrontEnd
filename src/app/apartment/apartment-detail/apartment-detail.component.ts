@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApartmentDetailService } from '../services/apartment-detail.service';
-import { IApartment } from '../models/apartment';
+import { IApartment, IImage } from '../models/apartment';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ModalReservationComponent } from './modal-reservation/modal-reservation.component';
@@ -26,7 +26,7 @@ export class ApartmentDetailComponent implements OnInit {
   public model: NgbDateStruct;
   apartment: IApartment;
   pricingPeriods: IPricingPeriodDetail[] = [];
-  images: Array<string> = [];
+  images: Array<IImage> = [];
   isLoading: boolean = false;
   currentPricingPeriod: IPricingPeriodDetail;
   openModal: boolean = false;
@@ -75,24 +75,26 @@ export class ApartmentDetailComponent implements OnInit {
     
 
   }
-  // openSpinner() {
-  //   this.SpinnerService.show();
+  openSpinner() {
+    this.SpinnerService.show();
 
-  //   setTimeout(() => {
-  //     /** spinner ends after 5 seconds */
-  //     this.SpinnerService.hide();
-  //   }, 100);
-  // }
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.SpinnerService.hide();
+    }, 100);
+  }
 
   public createImgPath = (serverPath: string) => {
     return `https://localhost:5001/${serverPath}`;
   }
 
   getApartment(id) {
+    this.SpinnerService.show();
     this.apartmentDetailService.getApartment(id).subscribe(
       data => { this.apartment = data;
           this.images = data.images;
           this.isLoading = true;
+          this.SpinnerService.hide();
           console.log(this.apartment);
         }
     )

@@ -8,12 +8,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { ConfirmationModalComponent } from 'src/app/shared/modals/confirmation-modal/confirmation-modal.component';
 import { take } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr/toastr/toastr.service';
+import { ToastrService } from 'ngx-toastr';
 import { Pagination } from 'src/app/helpers/pagination';
 import { ApartmentGroupParams } from '../models/apartmentGroupParams';
 import { IUser } from 'src/app/auth/models/user';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 export interface DialogData {
   animal: string;
@@ -48,6 +49,8 @@ export class AdminApartmentGroupComponent implements OnInit {
 
   constructor(private apartmentGroupService: AdminApartmentGroupService, 
               public dialog: MatDialog,
+              private spinnerService: NgxSpinnerService,
+              private toastr: ToastrService,
               // private toastr: ToastrService,
               private authService: AuthService,
               private formBuilder: FormBuilder,
@@ -88,11 +91,12 @@ export class AdminApartmentGroupComponent implements OnInit {
 
   getApartmentGroups() {
     console.log('params:',this.apartmentGroupParams);
-    
+    this.spinnerService.show();
     this.apartmentGroupService.getApartmentGroupsForAdminPagination(this.apartmentGroupParams, this.apartmentGroupForm.value).subscribe(
       data => {
          this.apartmentGroups = data.result;
          this.pagination = data.pagination;
+         this.spinnerService.hide();
         })
   }
 
@@ -117,20 +121,14 @@ export class AdminApartmentGroupComponent implements OnInit {
           timeOut: 7500
         }
         console.log('id delete',id);
-        // this.toastr.info('Uspješno ste obrisali grupu', 'Uspjeh', toastrVar);
+        
         // this.isLoadingApproval = true;
         this.apartmentGroupService.deleteApartmentGroup(id).pipe(take(1)).subscribe(data => {
-          if (data) {
-            // this.isLoadingApproval = false;
-            // when request is sent to editing, it is no longer visible in list module
-            // this.listARowDeterminator.changeSelectedRow(null);
-            // this.toastr.success('Uspješno ste prihvatili zahtjev', 'Uspjeh', this.toastrVar);
-            // this.router.navigate(['/lists/rejected-request-list']);
-          }
+            this.toastr.info('Uspješno ste obrisali grupu', 'Uspjeh');
           this.getApartmentGroups();
         })
       } else {
-        // this.toastr.warning('Zahtjev nije prihvaćen', 'Pažnja', this.toastrVar);
+        this.toastr.warning('Grupa nije obrisana', 'Pažnja');
       }
       // u slucaju da trebamo neki handle
     }).catch((res) => { });
@@ -161,9 +159,10 @@ export class AdminApartmentGroupComponent implements OnInit {
       }
       if (result == 'add') {
         // this.toastrService.success('Dodali ste novu vrstu programa', 'Uspjeh', toastrVar);
+        this.toastr.success('Dodali ste novu grupu apartmana', 'Uspjeh');
         this.getApartmentGroups();
       } else if(result == 'edit') {
-        // this.toastrService.success('Uredili ste vrstu programa', 'Uspjeh', toastrVar);
+        this.toastr.success('Uredili ste grupu apartmana', 'Uspjeh');
         this.getApartmentGroups();
       } else if(result == 'delete') {
         // this.toastrService.warning('Izbrisali ste vrstu programa', 'Pažnja', toastrVar);

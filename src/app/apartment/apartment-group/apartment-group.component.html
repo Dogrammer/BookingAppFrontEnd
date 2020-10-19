@@ -1,16 +1,84 @@
 <div class="container">
-    <div *ngFor="let group of apartmentGroups" class="card mt-3">
-        <div class="card-header">
-          <a type="button" (click)="navigateToDetails(group.id)">{{group.name}}</a>
+  <div class="filter mt-5">
+    <!-- <h2 class="ml-3">Filter</h2> -->
+    <form [formGroup]="apartmentGroupForm" #myForm="ngForm" (ngSubmit)="getApartmentGroups()" autocomplete="off">
+      <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3  mb-3">
+          <label for="dateFrom" class="required">Datum od</label>
+          <input type="datetime-local" class="form-control" id="dateFrom" name="name" placeholder="datum od"
+            formControlName="dateFrom"
+            [ngClass]="{'is-invalid': dateFrom.invalid && (dateFrom.dirty || dateFrom.touched || myForm.submitted)}"
+            autocomplete="off">
+          <div class="invalid-feedback">Polje je obavezno</div>
         </div>
-        <div class="card-body">
-          <div *ngIf="group; then thenBlock else elseBlock"></div>
-          <ng-template #thenBlock><img src="../../../assets/apartmentgroup/img1.jpg" alt=""></ng-template>
-          <ng-template #elseBlock><img src="../../../assets/apartmentgroup/no-image.png" alt=""></ng-template>
-          <p class="card-text">{{group.description}}.</p>
+        <div class="col-sm-3 col-md-3 col-lg-3  mb-3">
+          <label for="dateTo" class="required">Datum do</label>
+          <input type="datetime-local" class="form-control" id="dateTo" name="description" placeholder="datum do"
+            formControlName="dateTo"
+            [ngClass]="{'is-invalid': dateTo.invalid && (dateTo.dirty || dateTo.touched || myForm.submitted)}"
+            autocomplete="off">
+          <div class="invalid-feedback">Polje je obavezno</div>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3  mb-3">
+          <label for="capacity" class="required">Koliko osoba</label>
+          <input type="number" class="form-control" id="capacity" name="description" placeholder="broj osoba..."
+            formControlName="capacity"
+            [ngClass]="{'is-invalid': capacity.invalid && (capacity.dirty || capacity.touched || myForm.submitted)}"
+            autocomplete="off">
+          <div class="invalid-feedback">Polje je obavezno</div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 mb-3">
+          <label for="cityId" class="required">Grad</label>
+          <ng-select [items]="cities" bindLabel="name" bindValue="id" labelForId="state" placeholder="Izaberi..."
+            clearAllText="Clear" formControlName="cityId" 
+            [ngClass]="{'is-invalid': cityId.invalid && (cityId.dirty || cityId.touched || myForm.submitted)}">
+          </ng-select>
+          <div class="invalid-feedback">Polje je obavezno</div>
         </div>
       </div>
 
+      <button type="submit" [disabled] = "!apartmentGroupForm.valid" class="btn btn-outline-primary" style="margin-left: 46.7%">Filtriraj</button>
       
+    </form>
+    <!-- <div class="foot">
+      <button class="btn btn-outline-warning ml-3 mb-3" (click)="checkAvailability()">Provjeri raspoloživost</button>
+      <p class="ml-3">Raspoloživo:<i *ngIf="available === true" style="font-size: 20px; color: green;" class="material-icons">check</i><i *ngIf="available === false" style="font-size: 20px; color: red;" class="material-icons">clear</i></p>
+    </div> -->
+    
+    
+    
+    
+  </div>
+    <div *ngFor="let group of apartmentGroups" class="card mt-5">
+        <!-- <div class="card-header">
+          <a type="button" (click)="navigateToDetails(group.id)">{{group.name}}</a>
+        </div> -->
+        <div class="card-body">
+          <div *ngIf="group.imageFilePath; then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock><img  [src]="createImgPath(group.imageFilePath)"></ng-template>
+          <ng-template #elseBlock><img style="width:35%; height: 200px;" src="../../../assets/apartmentgroup/no-image.png" alt=""></ng-template>
+          <div class="card-text">
+            <a (click)="navigateToDetails(group.id)"><h2 style="cursor: grab;" class="text-primary">{{group.name}}</h2></a>
+            <!-- <h2 class="text-primary">{{group.name}}</h2> -->
+            <p>{{group.description}}</p>
+          </div>
+          
+        </div>
+    </div>
+
+      <div style="margin-left:42%;" class="mt-3" *ngIf="pagination">
+        <pagination 
+          [boundaryLinks]="true" 
+          [totalItems]="pagination.totalItems"
+          [itemsPerPage] = "pagination.itemsPerPage"
+          [(ngModel)]="pagination.currentPage"
+          (pageChanged)="pageChanged($event)"
+          previousText="&lsaquo;" 
+          nextText="&rsaquo;" 
+          firstText="&laquo;" 
+          lastText="&raquo;">
+        </pagination>
+      </div>
 </div>
+
 
