@@ -4,6 +4,9 @@ import { IApartment, IImage } from 'src/app/apartment/models/apartment';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AdminApartmentService } from '../services/admin-apartment.service';
 import { ActivatedRoute } from '@angular/router';
+import { IPricingPeriodDetail } from '../models/pricingPeriodDetails';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ApartmentDetailService } from 'src/app/apartment/services/apartment-detail.service';
 
 @Component({
   selector: 'app-admin-apartment-detail',
@@ -16,6 +19,8 @@ export class AdminApartmentDetailComponent implements OnInit {
   public model: NgbDateStruct;
   apartment: IApartment;
   images: Array<IImage> = [];
+  pricingPeriods: IPricingPeriodDetail[] = [];
+  isLoading: boolean = false;
 
   reservationFormGroup: FormGroup = this.formBuilder.group({
     dateFrom: [null,Validators.required],
@@ -26,16 +31,20 @@ export class AdminApartmentDetailComponent implements OnInit {
 
   constructor(private adminApartmentDetailService: AdminApartmentService, 
               private formBuilder: FormBuilder,
+              private apartmentDetailService: ApartmentDetailService,
+              private SpinnerService: NgxSpinnerService,
               private activatedRoute: ActivatedRoute,
               private ngbModalService: NgbModal) { }
 
   ngOnInit(): void {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
     this.getApartment(this.id);
-    this.reservationFormGroup.patchValue({
-      apartmentId: this.id,
-      totalPrice: 150
-    });
+    this.getPricingPeriods();
+
+    // this.reservationFormGroup.patchValue({
+    //   apartmentId: this.id,
+    //   totalPrice: 150
+    // });
   }
 
   public createImgPath = (serverPath: string) => {
@@ -43,8 +52,20 @@ export class AdminApartmentDetailComponent implements OnInit {
   }
 
   getApartment(id) {
-    this.adminApartmentDetailService.getApartment(id).subscribe(
-      data => { this.apartment = data; this.images = data.images; console.log(this.apartment)}
+    this.SpinnerService.show();
+    this.apartmentDetailService.getApartment(id).subscribe(
+      data => { this.apartment = data;
+          this.images = data.images;
+          this.isLoading = true;
+          this.SpinnerService.hide();
+          console.log(this.apartment);
+        }
+    )
+  }
+
+  getPricingPeriods() {
+    this.adminApartmentDetailService.getPricingPeriodDetailsByApartmentId(this.id).subscribe(
+      data => { this.pricingPeriods = data; console.log(this.pricingPeriods)}
     )
   }
 

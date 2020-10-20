@@ -78,27 +78,27 @@ export class ModalAddOrEditApartmentGroupComponent implements OnInit {
     )
   }
   
-  saveApartmentGroup()  {
-    if(!this.apartmentGroupGroup.valid) {
-      return;
-    } else {
-      console.log('validna forma');
+  // saveApartmentGroup()  {
+  //   if(!this.apartmentGroupGroup.valid) {
+  //     return;
+  //   } else {
+  //     console.log('validna forma');
       
-      this.apartmentGroupService.saveApartmentGroup(this.apartmentGroupGroup.value).pipe(take(1)).subscribe(data => {
-        this.modal.close('add')
-      });
-    }
-  }
+  //     this.apartmentGroupService.saveApartmentGroup(this.apartmentGroupGroup.value).pipe(take(1)).subscribe(data => {
+  //       this.modal.close('add')
+  //     });
+  //   }
+  // }
 
-  editApartmentGroup()  {
-    if(!this.apartmentGroupGroup.valid) {
-      return;
-    } else {
-      this.apartmentGroupService.editApartmentGroup(this.row.id, this.apartmentGroupGroup.value).pipe(take(1)).subscribe(data => {
-        this.modal.close('add') 
-      });
-    }
-  }
+  // editApartmentGroup()  {
+  //   if(!this.apartmentGroupGroup.valid) {
+  //     return;
+  //   } else {
+  //     this.apartmentGroupService.editApartmentGroup(this.row.id, this.apartmentGroupGroup.value).pipe(take(1)).subscribe(data => {
+  //       this.modal.close('add') 
+  //     });
+  //   }
+  // }
 
 
   // upload
@@ -113,12 +113,14 @@ export class ModalAddOrEditApartmentGroupComponent implements OnInit {
     
   //upload
   submit(){
+    console.log('forma', this.apartmentGroupGroup.value);
+    
     const formData = new FormData();
     formData.append('file', this.apartmentGroupGroup.get('fileSource').value);
     formData.append('name', this.name.value);
     formData.append('description', this.description.value);
     formData.append('userId', this.userId.value);
-    console.log('formdata',formData);
+    console.log('formdata=', formData);
     
 
     if(this.row && this.action == 'edit') {
@@ -146,7 +148,7 @@ export class ModalAddOrEditApartmentGroupComponent implements OnInit {
   }
 
   get description(): AbstractControl {
-    return this.apartmentGroupGroup.get('name');
+    return this.apartmentGroupGroup.get('description');
   }
 
   get userId(): AbstractControl {

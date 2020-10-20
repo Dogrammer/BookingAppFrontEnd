@@ -75,7 +75,7 @@ export class ModalAoeApartmentTypeComponent implements OnInit {
       console.log('validna forma');
       
       this.basicCrudService.saveApartmentType(this.apartmentTypeGroup.value).pipe(take(1)).subscribe(data => {
-        this.modal.close('add')
+        this.modal.close('add');
       });
     }
   }
@@ -85,7 +85,7 @@ export class ModalAoeApartmentTypeComponent implements OnInit {
       return;
     } else {
       this.basicCrudService.editApartmentType(this.row.id, this.apartmentTypeGroup.value).pipe(take(1)).subscribe(data => {
-        this.modal.close('add') 
+        this.modal.close('edit');
       });
     }
   }

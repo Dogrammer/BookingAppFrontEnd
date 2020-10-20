@@ -1,51 +1,99 @@
-<div class="container">
-    <div class="heading">
-        <h3 class="title">{{apartment.name}}</h3>
-        <p class="price">$150.50</p>
+<div *ngIf="isLoading===true" class="container  mt-5">
+  <div class="header1 mb-2">
+    <h1 class="text-primary">{{apartment.name}}</h1>
+    <!-- <button class="btn btn-outline-primary" (click)="openReservationModal(id)">Rezerviraj</button> -->
+  </div>
+  <div class="wrapper">
+    <div class="gallery">
+      <div class="slider" *ngIf="images">
+        <ngb-carousel >
+            <ng-template ngbSlide *ngFor="let image of images">
+              <div class="picsum-img-wrapper">
+                <img [src]="createImgPath(image)" style="height: 500px; width: 100%;" alt="Random first slide">
+              </div>
+            </ng-template>
+          
+            
+        </ngb-carousel>
     </div>
-    <div class="photo">
-        <h3>photo part</h3>
+    </div>
+    <div class="details">
+      <h2>Informacije</h2>
+      <hr>
 
-        <div *ngFor="let image of images" style="display: inline; padding: 5px;">
-          <!-- <p>Taken from wikpedia</p> -->
-          <img style="width: 100px; height: 100px;" [src]="createImgPath(image)">
-          <!-- <img style="width: 100px; height: 100px;" src="Images/img1.jpg" alt=""> -->
-        </div>
-
-    </div>
-    <div class="details mt-3">
-        <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Capacity
-              <span class="badge badge-primary badge-pill">{{apartment.capacity}}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Size
-              <span class="badge badge-primary badge-pill">{{apartment.size}}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Other details
-              <span class="badge badge-primary badge-pill">1</span>
-            </li>
-          </ul>
-    </div>
-    <div class="calendar">
-        <h3>calendar part</h3>
-    </div>
-
-    <!-- <form [formGroup]="reservationFormGroup">
-      <div class="form-group">
-        <label for="formGroupExampleInput">Example label</label>
-        <input type="datetime-local" class="form-control" id="formGroupExampleInput" formControlName="dateFrom" placeholder="Example input">
+      <h3><u>Osnovne informacije:</u> </h3>
+      <p>Opis: {{apartment.description}} </p>
+      <h3><u>Informacije o adresi:</u></h3>
+      <div class="address">
+        <p>Lokacija: {{apartment.fullAddress}}</p>
+      <p>Grad: {{apartment.city.name}}</p>
+      <p>Država: {{apartment.city.country.name}}</p>
       </div>
-      <div class="form-group">
-        <label for="formGroupExampleInput2">Another label</label>
-        <input type="datetime-local" class="form-control" id="formGroupExampleInput2" formControlName="dateTo" placeholder="Another input">
+      <h3><u>Ostale informacije:</u></h3>
+      <div class="other">
+        <p>Kapacitet: {{apartment.capacity}}</p>
+        <p>Najbliža plaža: {{apartment.closestBeachDistance}}</p>
+        <p>Najbliža trgovina: {{apartment.closestMarketDistance}}</p>
+        <p>Kvadratura: {{apartment.size}}</p>
+        <p>Broj spavaćih soba: {{apartment.numberOfBedrooms}}</p>
       </div>
-    <button class="btn btn-primary mt-3" (click)="sendReservation()">Send reservation request</button>
+      <h3><u>Sadržaji</u> </h3>
+      <div class="features">
+        <p>Roštilj:<i *ngIf="apartment.bbqTools === true" style="font-size: 20px; color: green;" class="material-icons">check</i><i *ngIf="apartment.bbqTools === false" style="font-size: 20px; color: red;" class="material-icons">clear</i></p>
+        <p>Klimatizacija: <i *ngIf="apartment.climateControl === true" style="font-size: 20px; color: green;" class="material-icons">check</i><i *ngIf="apartment.climateControl === false" style="font-size: 20px; color: red;" class="material-icons">clear</i></p>
+        <p>Kuhinjski pribor: <i *ngIf="apartment.kitchenTool === true" style="font-size: 20px; color: green;" class="material-icons">check</i><i *ngIf="apartment.kitchenTool === false" style="font-size: 20px; color: red;" class="material-icons">clear</i></p>
+        <p>Sportski rekviziti: <i *ngIf="apartment.sportTool === true" style="font-size: 20px; color: green;" class="material-icons">check</i><i *ngIf="apartment.sportTool === false" style="font-size: 20px; color: red;" class="material-icons">clear</i></p>
+        <p>Wi-fi: <i *ngIf="apartment.wifi === true" style="font-size: 20px; color: green;" class="material-icons">check</i><i *ngIf="apartment.wifi === false" style="font-size: 20px; color: red;" class="material-icons">clear</i></p>
+        <p>Radni prostor: <i *ngIf="apartment.workSpace === true" style="font-size: 20px; color: green;" class="material-icons">check</i><i *ngIf="apartment.workSpace === false" style="font-size: 20px; color: red;" class="material-icons">clear</i></p>
+      </div>
+      
+      
 
-    </form> -->
+
+
+
 
       
+      
+
+
+      
+
+    </div>
+  </div>
+  <div class="price mt-5">
+    <h2>Cijene</h2>
+    <table class="table table-striped table-light">
+      <thead>
+        <tr>
+          <!-- <th scope="col">#</th> -->
+          <th scope="col">Naziv</th>
+          <th scope="col">Datum od</th>
+          <th scope="col">Datum do</th>
+          <th scope="col">Cijena u Eur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of pricingPeriods">
+          
+          <!-- <td><button class="btn" (click)="navigateToDetails(item.id)" ><i class="edit-icon material-icons text-info">zoom_in</i></button></td> -->
+          <td>{{item.name}}</td>
+          <td>{{item.dateFrom | date: 'dd.MM.yyyy.'}}</td>
+          <td>{{item.dateTo | date: 'dd.MM.yyyy.'}}</td>
+          <td>{{item.price}}</td>
+
+
+
+        </tr>
+        
+      </tbody>
+    </table>
+    
+  </div>
+  
 </div>
 
+
+<!-- < class="btn btn-primary" (click)="openSpinner()" >Open spinner</> -->
+
+<!-- <ngx-spinner></ngx-spinner> -->

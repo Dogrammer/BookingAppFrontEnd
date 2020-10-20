@@ -1,5 +1,9 @@
-<div class="container">
-    <h3>Pregled fotografija</h3>
+<div class="container mt-3">
+    <div class="header">
+        <i id="ic" class="material-icons text-primary">photo</i>
+        <h2 class="text-black">Fotografije apartmana</h2>
+        <!-- <button class="btn float-right"><i id="add" class="material-icons text-primary" (click)="addPricingPeriodDetails()">add_circle_outline</i></button> -->
+      </div>
     <form [formGroup]="myForm" (ngSubmit)="submit()">
   
         <!-- <div class="form-group">
@@ -16,7 +20,7 @@
         </div> -->
           
         <div class="form-group">
-            <label for="file">File</label>
+            <label for="file">Fotografija</label>
             <input 
                 formControlName="file"
                 id="file" 

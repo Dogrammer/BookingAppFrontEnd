@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { ConfirmationModalComponent } from 'src/app/shared/modals/confirmation-modal/confirmation-modal.component';
 import { AdminApartmentService } from '../services/admin-apartment.service';
@@ -30,6 +31,7 @@ export class AdminApartmentImagesComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private adminApartmentService: AdminApartmentService,
     private ngbModalService: NgbModal,
+    private toastr: ToastrService,
     private http: HttpClient,
     private uploadService: UploadService
   ) { }
@@ -65,13 +67,7 @@ export class AdminApartmentImagesComponent implements OnInit {
         // this.toastr.info('Uspješno ste obrisali grupu', 'Uspjeh', toastrVar);
         // this.isLoadingApproval = true;
         this.adminApartmentService.deleteImage(id).pipe(take(1)).subscribe(data => {
-          if (data) {
-            // this.isLoadingApproval = false;
-            // when request is sent to editing, it is no longer visible in list module
-            // this.listARowDeterminator.changeSelectedRow(null);
-            // this.toastr.success('Uspješno ste prihvatili zahtjev', 'Uspjeh', this.toastrVar);
-            // this.router.navigate(['/lists/rejected-request-list']);
-          }
+          this.toastr.info('Izbrisali ste fotografiju', 'Uspjeh');
           this.adminApartmentService.getImagesByApartmentId(this.id).subscribe(
             data => { 
               this.images = data; console.log('images:', this.images);
@@ -114,7 +110,9 @@ export class AdminApartmentImagesComponent implements OnInit {
     this.http.post('https://localhost:5001/api/upload/uploadApartmentImage', formData)
       .subscribe(res => {
         console.log(res);
-        alert('Uploaded Successfully.');
+
+        // alert('Uploaded Successfully.');
+        this.toastr.success('Dodali ste fotografiju', 'Uspjeh');
         this.adminApartmentService.getImagesByApartmentId(this.id).subscribe(
           data => { 
             this.images = data; console.log('images:', this.images);

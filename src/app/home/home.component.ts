@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   }
 
   navigateToApartments(){
-    this.router.navigate(['site/apartment-groups']);
+    this.router.navigate(['site/apartments']);
   }
 
 }

@@ -1,6 +1,7 @@
 export interface IUser {
     id: number;
-    username: string;
+    userName: string;
+    role: string;
     // knownAs: string;
     // age: number;
     // gender: string;

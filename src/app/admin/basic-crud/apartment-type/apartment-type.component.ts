@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { ConfirmationModalComponent } from 'src/app/shared/modals/confirmation-modal/confirmation-modal.component';
 import { IApartmentType } from '../../models/apartment-types';
@@ -26,6 +27,7 @@ export class ApartmentTypeComponent implements OnInit {
               // public dialog: MatDialog,
               // private toastr: ToastrService,
               private ngbModalService: NgbModal,
+              private toastr: ToastrService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -68,13 +70,7 @@ export class ApartmentTypeComponent implements OnInit {
         // this.toastr.info('Uspješno ste obrisali grupu', 'Uspjeh', toastrVar);
         // this.isLoadingApproval = true;
         this.basicCrudService.deleteApartmentType(id).pipe(take(1)).subscribe(data => {
-          if (data) {
-            // this.isLoadingApproval = false;
-            // when request is sent to editing, it is no longer visible in list module
-            // this.listARowDeterminator.changeSelectedRow(null);
-            // this.toastr.success('Uspješno ste prihvatili zahtjev', 'Uspjeh', this.toastrVar);
-            // this.router.navigate(['/lists/rejected-request-list']);
-          }
+          this.toastr.info('Izbrisali ste vrstu apartmana','Uspjeh');
           this.getApartmentTypes();
         })
       } else {
@@ -106,10 +102,10 @@ export class ApartmentTypeComponent implements OnInit {
         timeOut: 7500
       }
       if (result == 'add') {
-        // this.toastrService.success('Dodali ste novu vrstu programa', 'Uspjeh', toastrVar);
+        this.toastr.success('Dodali ste novu vrstu apartmana', 'Uspjeh');
         this.getApartmentTypes();
       } else if(result == 'edit') {
-        // this.toastrService.success('Uredili ste vrstu programa', 'Uspjeh', toastrVar);
+        this.toastr.success('Uredili ste vrstu apartmana', 'Uspjeh');
         this.getApartmentTypes();
       } else if(result == 'delete') {
         // this.toastrService.warning('Izbrisali ste vrstu programa', 'Pažnja', toastrVar);

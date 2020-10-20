@@ -1,6 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { IPricingPeriodDetail } from '../models/pricingPeriodDetails';
 import { AdminApartmentService } from '../services/admin-apartment.service';
@@ -20,6 +22,8 @@ export class AdminPricingPeriodDetailsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private adminApartmentService: AdminApartmentService,
+    private location: Location,
+    private toastr: ToastrService,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -83,7 +87,8 @@ export class AdminPricingPeriodDetailsComponent implements OnInit {
       
       this.adminApartmentService.savePricingPeriodDetails(this.pricingPeriodDetailGroup.value, this.id).pipe(take(1)).subscribe(data => {
         // this.location.back();
-        
+        this.toastr.success('Spremili ste periode plaćanja', 'Uspjeh');
+        this.location.back();
       });
     }
   }

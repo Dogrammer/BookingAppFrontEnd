@@ -76,7 +76,7 @@ export class ModalAoeCityComponent implements OnInit {
       return;
     } else {
       this.basicCrudService.editCity(this.row.id, this.cityGroup.value).pipe(take(1)).subscribe(data => {
-        this.modal.close('add') 
+        this.modal.close('edit') 
       });
     }
   }

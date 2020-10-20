@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   registerFormGroup: FormGroup = this.formBuilder.group({
     username: [null],
     password: [null],
+    wannabeManager: [false],
   });
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -24,6 +25,8 @@ export class RegisterComponent implements OnInit {
 
 
   register() {
+    console.log(this.registerFormGroup.value);
+    
     if (this.registerFormGroup.valid) {
       this.user = Object.assign({}, this.registerFormGroup.value); /* iz registerForm.value spremamo u empty object i to assignamo u var user; */
       this.authService.register(this.registerFormGroup.value).subscribe(() => {

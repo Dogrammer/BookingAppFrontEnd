@@ -2,6 +2,21 @@ img {
     display: inline;
 }
 
+.header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header h2 {
+    width:85%;
+}
+
+.header i {
+    font-size: 30px;
+    width: 5%;
+
+}
+
 .imagesContainer {
     // background-color: lightblue;
     height: 300px;

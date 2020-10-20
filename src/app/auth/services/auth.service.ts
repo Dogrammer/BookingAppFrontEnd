@@ -30,7 +30,8 @@ export class AuthService {
        password: registerData.password,
        email: registerData.username,
        gender: 'male',
-       role: 'role'
+       role: 'role',
+       wannabeManager: registerData.wannabeManager
      }
 
      console.log(request);

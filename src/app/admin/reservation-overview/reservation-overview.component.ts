@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { error } from 'console';
+import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { Pagination } from 'src/app/helpers/pagination';
 import { ConfirmationModalComponent } from 'src/app/shared/modals/confirmation-modal/confirmation-modal.component';
@@ -21,6 +23,7 @@ export class ReservationOverviewComponent implements OnInit {
   
   constructor(private reservationService: ReservationService,
               private ngbModalService: NgbModal,
+              private toastr: ToastrService,
               private formBuilder: FormBuilder
     
             
@@ -56,6 +59,7 @@ export class ReservationOverviewComponent implements OnInit {
   rejectReservation(id) {
     this.reservationService.rejectReservation(id).subscribe(
       data => { this.getReservations() ;
+        this.toastr.info('Rezervacija je odbijena','Uspjeh');
               }
     )
   }
@@ -63,6 +67,11 @@ export class ReservationOverviewComponent implements OnInit {
   acceptReservation(id) {
     this.reservationService.acceptReservation(id).subscribe(
       data => { this.getReservations();
+        this.toastr.info('Rezervacija je prihvaćena','Uspjeh');
+
+       }, error => {
+         this.toastr.error('Rezervacija se ne može odbiti - kontaktirajte administratora', 'Upozorenje')
+         
        }
     )
   }
@@ -82,13 +91,7 @@ export class ReservationOverviewComponent implements OnInit {
         // this.toastr.info('Uspješno ste obrisali grupu', 'Uspjeh', toastrVar);
         // this.isLoadingApproval = true;
         this.reservationService.deleteReservation(id).pipe(take(1)).subscribe(data => {
-          if (data) {
-            // this.isLoadingApproval = false;
-            // when request is sent to editing, it is no longer visible in list module
-            // this.listARowDeterminator.changeSelectedRow(null);
-            // this.toastr.success('Uspješno ste prihvatili zahtjev', 'Uspjeh', this.toastrVar);
-            // this.router.navigate(['/lists/rejected-request-list']);
-          }
+          this.toastr.info('Rezervacija je obrisana','Uspjeh');
           this.getReservations();
         })
       } else {

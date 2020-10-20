@@ -81,7 +81,7 @@ export class ModalAoeCountryComponent implements OnInit {
       return;
     } else {
       this.basicCrudService.editCountry(this.row.id, this.countryGroup.value).pipe(take(1)).subscribe(data => {
-        this.modal.close('add') 
+        this.modal.close('edit') 
       });
     }
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { IUser } from 'src/app/auth/models/user';
 import { ConfirmationModalComponent } from 'src/app/shared/modals/confirmation-modal/confirmation-modal.component';
@@ -24,6 +25,7 @@ export class UsersComponent implements OnInit {
               // public dialog: MatDialog,
               // private toastr: ToastrService,
               private ngbModalService: NgbModal,
+              private toastr: ToastrService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -69,13 +71,7 @@ export class UsersComponent implements OnInit {
         // this.toastr.info('Uspješno ste obrisali grupu', 'Uspjeh', toastrVar);
         // this.isLoadingApproval = true;
         this.basicCrudService.deleteUser(id).pipe(take(1)).subscribe(data => {
-          if (data) {
-            // this.isLoadingApproval = false;
-            // when request is sent to editing, it is no longer visible in list module
-            // this.listARowDeterminator.changeSelectedRow(null);
-            // this.toastr.success('Uspješno ste prihvatili zahtjev', 'Uspjeh', this.toastrVar);
-            // this.router.navigate(['/lists/rejected-request-list']);
-          }
+          this.toastr.info('Izbrisali ste korisnika', 'Uspjeh');
           this.getUsers();
         })
       } else {
